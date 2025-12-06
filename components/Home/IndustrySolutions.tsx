@@ -9,6 +9,8 @@ import {
   CheckCircle2,
   Cpu
 } from 'lucide-react';
+// 1. 引入动画库
+import { motion, AnimatePresence } from 'framer-motion';
 
 const solutions = [
   {
@@ -65,11 +67,8 @@ export default function IndustrySolutions() {
         {/* 主体卡片 */}
         <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden border border-white flex flex-col lg:flex-row min-h-[500px]">
           
-          {/* 
-             左侧：导航菜单 
-             修改点 1: 添加 `justify-center` 让菜单垂直居中
-          */}
-          <div className="lg:w-1/3 border-r border-slate-100 bg-white p-6 flex flex-col gap-2 justify-center">
+          {/* 左侧：导航菜单 */}
+          <div className="lg:w-1/3 border-r border-slate-100 bg-white p-6 flex flex-col gap-2 justify-center z-20 relative">
             {solutions.map((item, index) => (
               <button
                 key={item.id}
@@ -93,46 +92,89 @@ export default function IndustrySolutions() {
             ))}
           </div>
 
-          {/* 
-             右侧：内容展示区 
-             修改点 2: 添加 `overflow-hidden` 防止图片放大溢出圆角
-             修改点 3: 减小 scale 幅度 (1.05 -> 1.02)，更克制
-          */}
-          <div className="lg:w-2/3 relative group overflow-hidden">
-             {/* 背景图容器 */}
-             <div className="absolute inset-0">
-               <img 
-                 src={solutions[activeTab].image} 
-                 alt={solutions[activeTab].title}
-                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102" 
-               />
-               {/* 遮罩保持不变 */}
-               <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent/20 lg:via-white/80"></div>
-             </div>
+          {/* 右侧：内容展示区 */}
+          <div className="lg:w-2/3 relative group overflow-hidden bg-slate-50">
+             
+             {/* 2. 使用 AnimatePresence 实现切换时的进出动画 */}
+             <AnimatePresence mode="wait">
+                <motion.div 
+                    key={activeTab} // 关键：key 变化触发动画
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 w-full h-full"
+                >
+                    {/* 背景图容器 */}
+                    <div className="absolute inset-0">
+                        {/* 图片增加轻微缩放动画 */}
+                        <motion.img 
+                            initial={{ scale: 1.05 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.8 }}
+                            src={solutions[activeTab].image} 
+                            alt={solutions[activeTab].title}
+                            className="w-full h-full object-cover" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent/20 lg:via-white/80"></div>
+                    </div>
 
-             {/* 文字内容 */}
-             <div className="relative z-10 p-8 lg:p-12 h-full flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 text-[#1677FF] font-bold tracking-widest text-xs uppercase mb-4">
-                   <Cpu size={14} /> Industry Solution
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-6">{solutions[activeTab].title}</h3>
-                <p className="text-slate-600 text-lg leading-relaxed mb-8 max-w-lg">
-                   {solutions[activeTab].desc}
-                </p>
-                
-                <div className="space-y-4 mb-8">
-                   {solutions[activeTab].points.map((point, i) => (
-                      <div key={i} className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-lg border border-white shadow-sm w-fit">
-                         <CheckCircle2 className="text-[#52C41A]" size={18} />
-                         <span className="text-slate-800 font-medium">{point}</span>
-                      </div>
-                   ))}
-                </div>
+                    {/* 文字内容 */}
+                    <div className="relative z-10 p-8 lg:p-12 h-full flex flex-col justify-center">
+                        <motion.div 
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.1 }}
+                            className="inline-flex items-center gap-2 text-[#1677FF] font-bold tracking-widest text-xs uppercase mb-4"
+                        >
+                            <Cpu size={14} /> Industry Solution
+                        </motion.div>
+                        
+                        <motion.h3 
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-3xl font-bold text-slate-900 mb-6"
+                        >
+                            {solutions[activeTab].title}
+                        </motion.h3>
+                        
+                        <motion.p 
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-slate-600 text-lg leading-relaxed mb-8 max-w-lg"
+                        >
+                            {solutions[activeTab].desc}
+                        </motion.p>
+                        
+                        <div className="space-y-4 mb-8">
+                            {solutions[activeTab].points.map((point, i) => (
+                                <motion.div 
+                                    key={i} 
+                                    initial={{ x: -10, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ delay: 0.4 + (i * 0.1) }} // 交错动画
+                                    className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-3 rounded-lg border border-white shadow-sm w-fit"
+                                >
+                                    <CheckCircle2 className="text-[#52C41A]" size={18} />
+                                    <span className="text-slate-800 font-medium">{point}</span>
+                                </motion.div>
+                            ))}
+                        </div>
 
-                <button className="btn btn-primary w-fit px-8 rounded bg-[#1677FF] border-none hover:bg-[#0958D9] shadow-lg shadow-blue-500/20 text-white">
-                   获取该方案报价
-                </button>
-             </div>
+                        <motion.button 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.7 }}
+                            className="btn btn-primary w-fit px-8 rounded bg-[#1677FF] border-none hover:bg-[#0958D9] shadow-lg shadow-blue-500/20 text-white"
+                        >
+                            获取该方案报价
+                        </motion.button>
+                    </div>
+                </motion.div>
+             </AnimatePresence>
+
           </div>
 
         </div>

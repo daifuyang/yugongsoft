@@ -111,10 +111,10 @@ export default function Hero() {
                         <FadeIn delay={0.4}>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button className="group bg-[#1677FF] hover:bg-[#0958D9] text-white h-14 px-8 rounded-xl text-lg font-semibold shadow-[0_10px_20px_-5px_rgba(22,119,255,0.4)] transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                                    开始您的项目 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                    免费咨询 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                                 <button className="h-14 px-8 rounded-xl text-slate-600 font-medium hover:bg-slate-100 transition-colors flex items-center justify-center">
-                                    了解我们的故事
+                                    了解愚公
                                 </button>
                             </div>
                         </FadeIn>

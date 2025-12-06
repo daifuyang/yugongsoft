@@ -28,7 +28,7 @@ export default function DeliveryProcess() {
                 <div className="flex items-start gap-4">
                   <div className="w-8 h-8 rounded-full bg-[#F6FFED] text-[#52C41A] flex items-center justify-center font-bold text-sm mt-1">3</div>
                   <div>
-                    <h4 className="font-bold text-slate-800">私有化部署交付</h4>
+                    <h4 className="font-bold text-slate-800">多环境部署交付</h4>
                     <p className="text-sm text-slate-500 mt-1">源码交付，完整知识转移</p>
                   </div>
                 </div>
