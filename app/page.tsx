@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FloatingWidget from "@/components/FloatingWidget";
 
 // 引入拆分后的组件
@@ -14,9 +12,6 @@ import CTA from "@/components/Home/CTA";
 export default function Home() {
   return (
     <main className="bg-white font-sans antialiased text-slate-600 selection:bg-[#1677FF] selection:text-white">
-      {/* 顶部导航 */}
-      <Navbar />
-
       {/* 1. 首屏 Hero */}
       <Hero />
 
@@ -26,20 +21,17 @@ export default function Home() {
       {/* 3. 核心能力 (Grid) */}
       <CoreServices />
 
-      {/* 4. 行业解决方案 (Tabs) - NEW */}
+      {/* 4. 行业解决方案 (Tabs) */}
       <IndustrySolutions />
 
       {/* 5. 交付流程 */}
       <DeliveryProcess />
 
-      {/* 6. 品牌故事 - NEW */}
+      {/* 6. 品牌故事  */}
       <BrandStory />
 
       {/* 7. 底部号召 */}
       <CTA />
-
-      {/* 底部 Footer */}
-      <Footer />
       
       {/* 悬浮组件 */}
       <FloatingWidget />

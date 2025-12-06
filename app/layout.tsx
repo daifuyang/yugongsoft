@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "愚公软件 | 移山之智，匠心之软",
@@ -16,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className={`antialiased min-h-screen flex flex-col`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

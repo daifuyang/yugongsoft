@@ -217,9 +217,11 @@ export default function Hero() {
                                 {/* --- 关键修改：悬浮元素使用 translateZ --- */}
 
                                 {/* 1. Security (右上) */}
-                                <div
-                                    style={{ transform: "translateZ(75px)" }}
-                                    className="absolute -right-8 sm:-right-16 -top-4 bg-white/95 backdrop-blur shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] p-4 rounded-2xl border border-white flex items-center gap-4 animate-[bounce_5s_infinite]"
+                                <motion.div
+                                    style={{ z: 75 }}
+                                    animate={{ y: [0, -12, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute -right-8 sm:-right-16 -top-4 bg-white/95 backdrop-blur shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] p-4 rounded-2xl border border-white flex items-center gap-4"
                                 >
                                     <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
                                         <ShieldCheck size={20} />
@@ -228,12 +230,14 @@ export default function Hero() {
                                         <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Value</div>
                                         <div className="text-sm font-bold text-slate-700 whitespace-nowrap">性价比首选</div>
                                     </div>
-                                </div>
+                                </motion.div>
 
                                 {/* 2. AI Core (左下) */}
-                                <div
-                                    style={{ transform: "translateZ(60px)" }}
-                                    className="absolute -left-6 sm:-left-12 bottom-32 bg-white/95 backdrop-blur shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] p-4 rounded-2xl border border-white flex items-center gap-4 animate-[bounce_6s_infinite] [animation-delay:2s]"
+                                <motion.div
+                                    style={{ z: 60 }}
+                                    animate={{ y: [0, -10, 0] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                                    className="absolute -left-6 sm:-left-12 bottom-32 bg-white/95 backdrop-blur shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] p-4 rounded-2xl border border-white flex items-center gap-4"
                                 >
                                     <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
                                         <Cpu size={20} />
@@ -242,12 +246,14 @@ export default function Hero() {
                                         <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Easy</div>
                                         <div className="text-sm font-bold text-slate-700 whitespace-nowrap">简单易上手</div>
                                     </div>
-                                </div>
+                                </motion.div>
 
                                 {/* 3. Efficiency (右下) */}
-                                <div
-                                    style={{ transform: "translateZ(90px)" }}
-                                    className="absolute -right-4 -bottom-6 bg-[#1677FF] text-white shadow-[0_20px_40px_-10px_rgba(22,119,255,0.4)] p-5 rounded-2xl flex items-center gap-4 animate-[bounce_4s_infinite] [animation-delay:1s]"
+                                <motion.div
+                                    style={{ z: 90 }}
+                                    animate={{ y: [0, -15, 0] }}
+                                    transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                                    className="absolute -right-4 -bottom-6 bg-[#1677FF] text-white shadow-[0_20px_40px_-10px_rgba(22,119,255,0.4)] p-5 rounded-2xl flex items-center gap-4"
                                 >
                                     <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
                                         <Zap size={20} fill="white" />
@@ -258,7 +264,7 @@ export default function Hero() {
                                             +42.8%
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
 
                                 {/* 底部辉光 (放在卡片背面) */}
                                 <div

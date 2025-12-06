@@ -1,9 +1,3 @@
-这是一份经过精心整理的**“全栈项目开发提示词” (Master Prompt)**。
-
-你可以将这段提示词保存下来。在未来，无论是让 AI 重构项目、开发新页面，还是迁移到其他技术栈，只要发送这段指令，它就能精准还原出我们今天打磨的这套**“中国科技蓝大厂风”** B2B 官网。
-
----
-
 ### 📋 项目提示词：愚公软件 (YuGong Software) 官网开发指南
 
 **角色设定：**
@@ -34,12 +28,21 @@
 
 #### 3. 核心组件规范 (Components Specs)
 
-**A. 全局布局**
+**A. 通用组件与交互**
+*   **FadeIn 组件 (`components/FadeIn.tsx`)**:
+    *   **必须使用**: 所有页面元素的进入动画（Entrance Animation）必须统一使用此组件，禁止手动编写 CSS `animate-in` 类，以保证全站动画体验的一致性与高性能（基于 Framer Motion）。
+    *   **参数规范**:
+        *   `direction`: 默认为 `up`。侧边栏/图表可使用 `left`/`right`。
+        *   `delay`: 用于列表项或 Grid 卡片的交错加载 (Staggered)，步长通常为 `0.1` 或 `0.2`。
+        *   `duration`: 默认 `0.5`，强调质感的 Hero 区域可适当延长至 `0.8`。
+    *   **场景**: Hero 标题、特性卡片列表、Dashboard 图表模块、FAQ 列表等。
+
+**B. 全局布局**
 *   **Navbar**: 固定吸顶 (`sticky`)，高度 `h-20`，背景高斯模糊。包含“解决方案” Hover 下拉菜单（双列 Grid 卡片样式）。
 *   **Footer**: 深海军蓝背景 (`#001529`)，高对比度白字。包含 Logo、Sitemap、备案号、带有白底的二维码区域。
 *   **Floating Widget**: 悬浮右下角。圆角矩形设计，包含“在线咨询”（品牌蓝）、“电话”（白底）、“回到顶部”。Hover 时显示二维码气泡。
 
-**B. 首页模块 (Home Sections)**
+**C. 首页模块 (Home Sections)**
 1.  **Hero Section (首屏)**:
     *   背景：顶部极淡灰蓝渐变 + 科技网格纹理。
     *   左侧：H1 大标题（“移山之智”高亮），数据背书（ISO, 100%交付）。
@@ -63,6 +66,14 @@
     *   纯品牌蓝背景 (`#1677FF`)。
     *   增加背景纹理（波纹或网格），按钮使用白色实心 + 描边组合。
 
+**D. 解决方案页 (Solution Pages)**
+*   **Hero Section**:
+    *   左侧：标题与核心价值，统一使用 `FadeIn` 组件实现进场动画。
+    *   右侧：**平面化 Dashboard 演示**。
+        *   **禁止**: 3D 透视 (`perspective`, `rotate-x/y`)、悬浮浮层 (`floating widgets`)、复杂交互动效。
+        *   **要求**: 干净、扁平的卡片式设计，使用柔和阴影 (`shadow-2xl`)，圆角 `rounded-2xl`。
+        *   **内容**: 模拟真实系统界面，数据/日志/图表需**填满容器**，禁止出现明显留白。
+
 #### 4. SEO 与性能优化
 *   **Metadata**: 配置详细的 `title`, `description`, `keywords`, `openGraph`。
 *   **JSON-LD**: 注入 `Organization` 和 `SoftwareApplication` 结构化数据。
@@ -75,18 +86,9 @@
 *   `app/layout.tsx` (SEO & Font)
 *   `components/Navbar.tsx`
 *   `components/Footer.tsx`
+*   `components/FadeIn.tsx` (通用动画组件)
 *   `components/Logo.tsx` (SVG 组件：双三角形叠加，深蓝+青色)
 *   `components/home/Hero.tsx`
 *   `components/home/LogoWall.tsx`
 *   `components/home/IndustrySolutions.tsx`
 *   ... (其他模块)
-
----
-
-### 如何使用这个提示词？
-
-1.  **新建对话**：在 ChatGPT (GPT-4) 或 Claude (3.5 Sonnet) 中开启新对话。
-2.  **发送指令**：直接复制粘贴上面的所有内容。
-3.  **补充指令**：你可以接着说：“请先帮我生成 `app/globals.css` 和 `tailwind.config.ts` (如果是v3) 或 CSS 变量配置，然后逐步生成各个组件的代码。”
-
-这样，AI 就会严格按照我们今天定下的**高标准**来输出代码，而不会退化成普通的模板网站。祝你的项目大获成功！🚀

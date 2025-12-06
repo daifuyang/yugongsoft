@@ -15,6 +15,7 @@ import {
   Play
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const solutions = [
   {
@@ -331,10 +332,13 @@ export default function IndustrySolutions() {
                     transition={{ delay: 0.4 }}
                     className="flex items-center gap-4"
                   >
-                    <button className="text-white bg-[#1677FF] hover:bg-blue-700 px-6 py-3 rounded-lg font-medium text-lg inline-flex items-center gap-2 group transition-all w-fit shadow-lg shadow-blue-200 hover:shadow-blue-300">
+                    <Link
+                      href={`/solutions/${solutions[activeTab].id}`}
+                      className="text-white bg-[#1677FF] hover:bg-blue-700 px-6 py-3 rounded-lg font-medium text-lg inline-flex items-center gap-2 group transition-all w-fit shadow-lg shadow-blue-200 hover:shadow-blue-300"
+                    >
                       <span>查看方案详情</span>
                       <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                     
                     {/* 播放控制提示 (可选) */}
                     <button 

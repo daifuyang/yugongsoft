@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
 export default function DeliveryProcess() {
@@ -52,9 +53,11 @@ export default function DeliveryProcess() {
                 <ShieldCheck className="text-[#52C41A]" size={20} /> <span>终身售后技术支持</span>
               </li>
             </ul>
-            <button className="btn btn-outline border-slate-200 text-slate-600 hover:border-[#1677FF] hover:text-[#1677FF] hover:bg-blue-50 mt-10 px-8 h-12 rounded">
-              查看交付标准
-            </button>
+            <Link href="/delivery">
+              <button className="btn btn-outline border-slate-200 text-slate-600 hover:border-[#1677FF] hover:text-[#1677FF] hover:bg-blue-50 mt-10 px-8 h-12 rounded">
+                查看交付标准
+              </button>
+            </Link>
           </div>
         </div>
       </div>
