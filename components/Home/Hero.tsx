@@ -4,7 +4,6 @@ import {
     ArrowRight,
     ShieldCheck,
     Zap,
-    Server,
     Globe,
     Lock,
     Cpu,
@@ -86,35 +85,34 @@ export default function Hero() {
                     <div className="lg:w-1/2 z-20 min-w-0 pt-10 lg:pt-0">
                         <FadeIn delay={0.1}>
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-[#0958D9] text-sm font-medium mb-8">
-                                <span className="bg-[#1677FF] text-white text-[10px] px-2 py-0.5 rounded-full font-bold tracking-wide">NEW</span>
-                                企业级数字化引擎 V5.0
+                                专注中小企业数字化落地
                             </div>
                         </FadeIn>
 
                         <FadeIn delay={0.2}>
                             <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0f172a] leading-[1.1] mb-6 tracking-tight">
-                                以<span className="text-[#1677FF] inline-block relative">
-                                    移山之智
+                                高性价比数字化<br />
+                                <span className="text-[#1677FF] inline-block relative">
+                                    助力生意更轻松
                                     {/* 文字下划线装饰 */}
                                     <svg className="absolute w-full h-3 -bottom-1 left-0 text-blue-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" /></svg>
-                                </span><br />
-                                重塑数字基石
+                                </span>
                             </h1>
                         </FadeIn>
 
                         <FadeIn delay={0.3}>
                             <p className="text-lg text-slate-500 mb-10 leading-[1.8] max-w-xl">
-                                摒弃浮躁，回归价值。愚公软件为您提供<b className="text-slate-800">自主可控、精准定制</b>的软件解决方案，助力企业构建坚实的数字护城河。
+                                拒绝虚高报价，拒绝过度开发。愚公软件为中小企业提供<b className="text-slate-800">CRM、MES、电商小程序</b>等实用工具，最快3天上线，让数字化触手可及。
                             </p>
                         </FadeIn>
 
                         <FadeIn delay={0.4}>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button className="group bg-[#1677FF] hover:bg-[#0958D9] text-white h-14 px-8 rounded-xl text-lg font-semibold shadow-[0_10px_20px_-5px_rgba(22,119,255,0.4)] transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
-                                    免费咨询 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                    免费咨询方案 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                                 <button className="h-14 px-8 rounded-xl text-slate-600 font-medium hover:bg-slate-100 transition-colors flex items-center justify-center">
-                                    了解愚公
+                                    查看演示案例
                                 </button>
                             </div>
                         </FadeIn>
@@ -122,12 +120,16 @@ export default function Hero() {
                         <FadeIn delay={0.5}>
                             <div className="mt-12 pt-8 border-t border-slate-200 flex gap-8 lg:gap-16">
                                 <div>
-                                    <p className="text-3xl font-bold text-slate-900">500+</p>
-                                    <p className="text-sm text-slate-500 mt-1">头部企业信赖</p>
+                                    <p className="text-3xl font-bold text-slate-900">3-7天</p>
+                                    <p className="text-sm text-slate-500 mt-1">平均交付周期</p>
                                 </div>
                                 <div>
-                                    <p className="text-3xl font-bold text-slate-900">100%</p>
-                                    <p className="text-sm text-slate-500 mt-1">项目交付率</p>
+                                    <p className="text-3xl font-bold text-slate-900">10分钟</p>
+                                    <p className="text-sm text-slate-500 mt-1">售后极速响应</p>
+                                </div>
+                                <div>
+                                    <p className="text-3xl font-bold text-slate-900">500+</p>
+                                    <p className="text-sm text-slate-500 mt-1"> 中小企业信赖</p>
                                 </div>
                             </div>
                         </FadeIn>
@@ -154,8 +156,8 @@ export default function Hero() {
                                                 <Logo className="w-7" />
                                             </div>
                                             <div>
-                                                <div className="text-base font-bold text-slate-800">企业数字化驾驶舱</div>
-                                                <div className="text-xs text-slate-400 mt-0.5">YuGong Enterprise OS v5.0</div>
+                                                <div className="text-base font-bold text-slate-800">企业官网 · 小程序 · CRM · 进销存</div>
+                                                <div className="text-xs text-slate-400 mt-0.5">需求确认后 1 小时给出落地排期</div>
                                             </div>
                                         </div>
                                         <div className="flex gap-2 items-center bg-green-50 px-3 py-1 rounded-full border border-green-100">
@@ -168,9 +170,9 @@ export default function Hero() {
                                     <div className="grid grid-cols-2 gap-4 sm:gap-6 mb-8">
                                         {/* QPS Card */}
                                         <div className="bg-gradient-to-b from-[#F8FAFC] to-[#F1F5F9] rounded-xl p-5 border border-slate-200 relative overflow-hidden group">
-                                            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">实时吞吐量 (QPS)</div>
+                                            <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">本月销售额 (CNY)</div>
                                             <div className="text-3xl font-black text-slate-800 flex items-end gap-2">
-                                                84.2k <span className="text-sm text-green-600 font-bold mb-1.5 bg-green-100 px-1.5 rounded">▲ 12%</span>
+                                                ¥12.8w <span className="text-sm text-green-600 font-bold mb-1.5 bg-green-100 px-1.5 rounded">▲ 12%</span>
                                             </div>
                                             <div className="flex items-end gap-1 h-10 mt-4 opacity-80">
                                                 {[30, 45, 35, 60, 50, 75, 55, 80, 65, 50, 70, 60].map((h, i) => (
@@ -182,12 +184,12 @@ export default function Hero() {
                                         {/* Availability Card */}
                                         <div className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm flex flex-col justify-between">
                                             <div>
-                                                <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">系统可用性</div>
-                                                <div className="text-3xl font-black text-slate-800">99.999%</div>
+                                                <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider mb-2">节省人力成本</div>
+                                                <div className="text-3xl font-black text-slate-800">35%</div>
                                             </div>
                                             <div className="mt-4 flex items-center gap-2 text-xs text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-100">
                                                 <ShieldCheck size={14} className="text-blue-500" />
-                                                <span>稳定运行 <span className="font-bold text-slate-800">312</span> 天</span>
+                                                <span>系统稳定运行 <span className="font-bold text-slate-800">312</span> 天</span>
                                             </div>
                                         </div>
                                     </div>
@@ -195,8 +197,8 @@ export default function Hero() {
                                     {/* Topology Map */}
                                     <div className="bg-slate-50 rounded-xl p-5 border border-slate-100 relative">
                                         <div className="flex justify-between items-center mb-6">
-                                            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">资源拓扑</div>
-                                            <div className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">Auto-Scaling: ON</div>
+                                            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">全渠道接入</div>
+                                            <div className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">自动同步</div>
                                         </div>
                                         <div className="flex justify-between items-center px-4 relative py-2">
                                             {/* 连接线 */}
@@ -223,8 +225,8 @@ export default function Hero() {
                                         <ShieldCheck size={20} />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Security</div>
-                                        <div className="text-sm font-bold text-slate-700 whitespace-nowrap">信创安全合规</div>
+                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Value</div>
+                                        <div className="text-sm font-bold text-slate-700 whitespace-nowrap">性价比首选</div>
                                     </div>
                                 </div>
 
@@ -237,8 +239,8 @@ export default function Hero() {
                                         <Cpu size={20} />
                                     </div>
                                     <div>
-                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">AI Core</div>
-                                        <div className="text-sm font-bold text-slate-700 whitespace-nowrap">智能决策引擎</div>
+                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Easy</div>
+                                        <div className="text-sm font-bold text-slate-700 whitespace-nowrap">简单易上手</div>
                                     </div>
                                 </div>
 

@@ -3,13 +3,13 @@ import Footer from "@/components/Footer";
 import FloatingWidget from "@/components/FloatingWidget";
 
 // 引入拆分后的组件
-import Hero from "@/components/home/Hero";
-import LogoWall from "@/components/home/LogoWall";
-import CoreServices from "@/components/home/CoreServices";
-import IndustrySolutions from "@/components/home/IndustrySolutions"; // 新增
-import DeliveryProcess from "@/components/home/DeliveryProcess";
-import BrandStory from "@/components/home/BrandStory"; // 新增
-import CTA from "@/components/home/CTA";
+import Hero from "@/components/Home/Hero";
+import LogoWall from "@/components/Home/LogoWall";
+import CoreServices from "@/components/Home/CoreServices";
+import IndustrySolutions from "@/components/Home/IndustrySolutions"; // 新增
+import DeliveryProcess from "@/components/Home/DeliveryProcess";
+import BrandStory from "@/components/Home/BrandStory"; // 新增
+import CTA from "@/components/Home/CTA";
 
 export default function Home() {
   return (

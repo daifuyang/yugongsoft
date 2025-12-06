@@ -20,8 +20,8 @@ export default function Footer() {
             </div>
             
             <p className="text-white/65 text-sm leading-7 max-w-xs">
-              以移山之志，铸大国重器。<br/>
-              专注为中国企业提供自主可控的数字化解决方案，让技术成为业务增长的坚实基石。
+              以移山之志，铸数字基石。<br/>
+              专注为中小企业提供高性价比的数字化解决方案，让技术成为业务增长的坚实引擎。
             </p>
             
             <div className="pt-2 space-y-3">
@@ -46,11 +46,20 @@ export default function Footer() {
                 解决方案
             </h3>
             <ul className="space-y-4 text-sm text-white/65">
-              {['智能制造 MES', '智慧金融风控', '政务大数据平台', '企业级云原生架构', '信创国产化替代'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-[#1677FF] transition-colors flex items-center gap-2 group">
+              {[
+                { title: 'CRM客户关系管理', href: '/solutions/crm' },
+                { title: '数字工厂MES', href: '/solutions/mes' },
+                { title: '智能服务工单', href: '/solutions/workorder' },
+                { title: '智慧教育', href: '/solutions/edu' },
+                { title: '智慧餐饮', href: '/solutions/catering' },
+                { title: '数字化电商', href: '/solutions/ecommerce' },
+                { title: '贸易供应链', href: '/solutions/supplychain' },
+                { title: 'WMS仓库管理', href: '/solutions/wms' }
+              ].map((item) => (
+                <li key={item.title}>
+                  <Link href={item.href} className="hover:text-[#1677FF] transition-colors flex items-center gap-2 group">
                     <span className="w-1 h-1 bg-white/20 rounded-full group-hover:bg-[#1677FF] transition-colors"></span>
-                    {item}
+                    {item.title}
                   </Link>
                 </li>
               ))}
@@ -63,11 +72,17 @@ export default function Footer() {
                 关于我们
             </h3>
             <ul className="space-y-4 text-sm text-white/65">
-              {['公司简介', '发展历程', '荣誉资质', '加入团队', '媒体报道'].map((item) => (
-                <li key={item}>
-                    <Link href="#" className="hover:text-[#1677FF] transition-colors flex items-center gap-2 group">
+              {[
+                { title: '关于愚公', href: '/about' },
+                { title: '产品中心', href: '/products' },
+                { title: '成功案例', href: '/cases' },
+                { title: '新闻动态', href: '#' },
+                { title: '加入我们', href: '/about' }
+              ].map((item) => (
+                <li key={item.title}>
+                    <Link href={item.href} className="hover:text-[#1677FF] transition-colors flex items-center gap-2 group">
                         <span className="w-1 h-1 bg-white/20 rounded-full group-hover:bg-[#1677FF] transition-colors"></span>
-                        {item}
+                        {item.title}
                     </Link>
                 </li>
               ))}

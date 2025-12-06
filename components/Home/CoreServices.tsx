@@ -1,10 +1,10 @@
 import { 
-  Code2, 
+  AppWindow, 
+  Settings, 
   Globe, 
-  Database, 
-  LayoutTemplate, 
-  LineChart, 
-  ShieldCheck, 
+  BarChart3, 
+  Wrench, 
+  Printer, 
   ChevronRight 
 } from "lucide-react";
 import FadeIn from "@/components/FadeIn"; // 确保路径正确
@@ -12,34 +12,34 @@ import FadeIn from "@/components/FadeIn"; // 确保路径正确
 export default function CoreServices() {
   const services = [
     { 
-      icon: <Code2 strokeWidth={1.5} size={28} />, 
-      title: "敏捷定制开发", 
-      desc: "基于云原生的敏捷开发模式，快速响应业务需求，缩短 40% 交付周期。" 
+      icon: <AppWindow strokeWidth={1.5} size={28} />, 
+      title: "小程序/APP开发", 
+      desc: "覆盖微信、抖音主流平台，抢占移动端流量红利，让客户随时随地找到您。" 
+    },
+    { 
+      icon: <Settings strokeWidth={1.5} size={28} />, 
+      title: "业务系统定制", 
+      desc: "贴合业务流程的 CRM、ERP、进销存，拒绝臃肿难用，只做最适合您的功能。" 
     },
     { 
       icon: <Globe strokeWidth={1.5} size={28} />, 
-      title: "云原生迁移", 
-      desc: "帮助企业从传统架构平滑迁移至云端，实现弹性伸缩与高可用。" 
+      title: "企业官网建设", 
+      desc: "高端品牌形象设计，配套 SEO 搜索引擎优化，提升企业公信力与获客能力。" 
     },
     { 
-      icon: <Database strokeWidth={1.5} size={28} />, 
-      title: "数据中台构建", 
-      desc: "打破数据孤岛，实现数据资产化，为企业决策提供精准支撑。" 
+      icon: <BarChart3 strokeWidth={1.5} size={28} />, 
+      title: "数据大屏/报表", 
+      desc: "经营数据一目了然，手机端随时查看今日营收、订单量，辅助老板科学决策。" 
     },
     { 
-      icon: <LayoutTemplate strokeWidth={1.5} size={28} />, 
-      title: "企业应用集成", 
-      desc: "连接 ERP、CRM、OA 等异构系统，实现业务流程自动化流转。" 
+      icon: <Wrench strokeWidth={1.5} size={28} />, 
+      title: "旧系统维护/二开", 
+      desc: "接手老旧系统维护，修复 Bug，开发新功能，让老系统焕发新生。" 
     },
     { 
-      icon: <LineChart strokeWidth={1.5} size={28} />, 
-      title: "商业智能 BI", 
-      desc: "可视化数据看板，深入挖掘数据价值，助力管理层洞察市场先机。" 
-    },
-    { 
-      icon: <ShieldCheck strokeWidth={1.5} size={28} />, 
-      title: "信创安全适配", 
-      desc: "国产化环境适配与安全加固，确保核心业务系统自主可控。" 
+      icon: <Printer strokeWidth={1.5} size={28} />, 
+      title: "硬件对接/物联网", 
+      desc: "连接打印机、扫码枪、生产设备、传感器，实现数据自动采集与上传。" 
     },
   ];
 
@@ -52,12 +52,12 @@ export default function CoreServices() {
         {/* 标题部分 */}
         <FadeIn direction="up" duration={0.6}>
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-[#1677FF] font-semibold tracking-wider text-sm uppercase mb-3 block">Our Capabilities</span>
+            <span className="text-[#1677FF] font-semibold tracking-wider text-sm uppercase mb-3 block">Our Services</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-              全面覆盖的数字化能力
+              实用落地的技术服务
             </h2>
             <p className="text-slate-500 text-lg leading-relaxed">
-              从咨询规划到落地实施，提供端到端的全栈技术服务，<br className="hidden md:block" />让技术成为业务增长的核心驱动力。
+              从咨询规划到落地实施，提供高性价比的全栈技术服务，<br className="hidden md:block" />让技术真正解决业务问题，带来实实在在的增长。
             </p>
           </div>
         </FadeIn>

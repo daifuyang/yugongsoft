@@ -4,9 +4,13 @@ import Link from "next/link";
 import {
   ChevronDown,
   Factory,
-  Landmark,
+  Users,
+  ClipboardList,
+  GraduationCap,
+  Utensils,
   ShoppingBag,
-  Building2,
+  Truck,
+  Package,
   Menu,
   X
 } from "lucide-react";
@@ -26,31 +30,55 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 解决方案下拉菜单数据
+  // 解决方案下拉菜单数据 - 专注中小企业高频场景
   const solutions = [
     {
-      title: "智能制造",
-      desc: "工业 4.0 产线数字化",
+      title: "CRM客户关系管理",
+      desc: "销售自动化与客户洞察",
+      icon: <Users size={18} />,
+      href: "/solutions/crm"
+    },
+    {
+      title: "数字工厂MES",
+      desc: "轻量级生产进度追踪",
       icon: <Factory size={18} />,
-      href: "/solutions/manufacture"
+      href: "/solutions/mes"
     },
     {
-      title: "智慧金融",
-      desc: "核心业务与风控中台",
-      icon: <Landmark size={18} />,
-      href: "/solutions/finance"
+      title: "智能服务工单",
+      desc: "售后运维高效流转",
+      icon: <ClipboardList size={18} />,
+      href: "/solutions/workorder"
     },
     {
-      title: "新零售",
-      desc: "全渠道人货场重构",
+      title: "智慧教育",
+      desc: "培训机构教务管理",
+      icon: <GraduationCap size={18} />,
+      href: "/solutions/edu"
+    },
+    {
+      title: "智慧餐饮",
+      desc: "扫码点餐与外卖接单",
+      icon: <Utensils size={18} />,
+      href: "/solutions/catering"
+    },
+    {
+      title: "数字化电商",
+      desc: "私域商城与分销裂变",
       icon: <ShoppingBag size={18} />,
-      href: "/solutions/retail"
+      href: "/solutions/ecommerce"
     },
     {
-      title: "数字政务",
-      desc: "城市大脑与数据治理",
-      icon: <Building2 size={18} />,
-      href: "/solutions/gov"
+      title: "贸易供应链",
+      desc: "进销存与财务一体化",
+      icon: <Truck size={18} />,
+      href: "/solutions/supplychain"
+    },
+    {
+      title: "WMS仓库管理",
+      desc: "条码出入库精细管理",
+      icon: <Package size={18} />,
+      href: "/solutions/wms"
     },
   ];
 
