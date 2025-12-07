@@ -6,10 +6,10 @@ export default function Footer() {
     // 背景色使用蚂蚁系的深蓝黑，字体颜色强制为白色系
     <footer className="bg-[#001529] text-white pt-20 pb-10 font-sans border-t border-[#1677FF]/10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 mb-8">
           
-          {/* 1. 品牌信息列 */}
-          <div className="space-y-6">
+          {/* 1. 品牌信息列 - 占3列 */}
+          <div className="space-y-6 lg:col-span-3">
             <div className="flex items-center gap-3">
               {/* 深色模式适配 Logo: 将后山改为白色，前山保持青色 */}
               <svg viewBox="0 0 32 32" fill="none" className="w-9 h-9" xmlns="http://www.w3.org/2000/svg">
@@ -40,12 +40,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* 2. 解决方案 - 增加 hover 效果 */}
-          <div>
+          {/* 2. 解决方案 - 增加 hover 效果 - 占4列 */}
+          <div className="lg:col-span-4">
             <h3 className="text-white font-bold text-base mb-8 relative inline-block after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-0.5 after:bg-[#1677FF]">
                 解决方案
             </h3>
-            <ul className="space-y-4 text-sm text-white/65">
+            <ul className="grid grid-cols-2 grid-rows-5 grid-flow-col gap-x-6 gap-y-4 text-sm text-white/65">
               {[
                 { title: 'CRM客户关系管理', href: '/solutions/crm' },
                 { title: '数字工厂MES', href: '/solutions/mes' },
@@ -66,8 +66,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 3. 关于我们 */}
-          <div>
+          {/* 3. 关于我们 - 占2列 */}
+          <div className="lg:col-span-2">
             <h3 className="text-white font-bold text-base mb-8 relative inline-block after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-0.5 after:bg-[#1677FF]">
                 关于我们
             </h3>
@@ -75,8 +75,8 @@ export default function Footer() {
               {[
                 { title: '关于愚公', href: '/about' },
                 { title: '产品中心', href: '/products' },
-                { title: '成功案例', href: '/cases' },
-                { title: '新闻动态', href: '#' },
+                { title: '客户案例', href: '/cases' },
+                // { title: '新闻动态', href: '#' },
                 { title: '加入我们', href: '/about' }
               ].map((item) => (
                 <li key={item.title}>
@@ -89,8 +89,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 4. 关注我们 */}
-          <div>
+          {/* 4. 关注我们 - 占3列 */}
+          <div className="lg:col-span-3">
             <h3 className="text-white font-bold text-base mb-8 relative inline-block after:absolute after:-bottom-2 after:left-0 after:w-8 after:h-0.5 after:bg-[#1677FF]">
                 关注我们
             </h3>

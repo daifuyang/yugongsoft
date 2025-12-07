@@ -10,7 +10,13 @@ import {
   Layers,
   FileText,
   Settings,
-  Truck
+  Truck,
+  Wifi,
+  Battery,
+  ChevronRight,
+  Search,
+  ArrowUpRight,
+  Box
 } from 'lucide-react';
 
 import FadeIn from '@/components/FadeIn';
@@ -217,93 +223,276 @@ export default function WMS() {
       {/* --- Core Features --- */}
       <section className="py-24 bg-[#F5F7FA]">
         <div className="container mx-auto px-6">
-          <div className="space-y-24">
-            {/* Feature 1 */}
+          <div className="space-y-32">
+            {/* Feature 1: PDA/Barcode */}
             <FadeIn direction="right">
-              <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 text-[#1677FF] flex items-center justify-center">
-                    <ScanBarcode size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#1677FF] flex items-center justify-center border border-blue-100">
+                    <ScanBarcode size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">条码/RFID管理，<br />扫码作业零差错</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">条码/RFID管理，<br />扫码作业零差错</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     支持一维码、二维码、RFID标签。入库扫码上架，出库扫码复核。PDA手持终端指引作业，系统自动校验，防止人为失误。
                   </p>
-                  <ul className="space-y-3 pt-2">
+                  <ul className="space-y-4 pt-4">
                     {["PDA手持终端作业", "防呆防错机制", "全流程条码追溯"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-[#1677FF]" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-[#1677FF] shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                  <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <ScanBarcode size={64} className="text-slate-200" />
-                    </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                  {/* PDA Mockup - Clean & Flat */}
+                  <div className="relative w-[320px] h-[640px] bg-white rounded-[3rem] border-[8px] border-slate-900 shadow-2xl overflow-hidden">
+                      {/* Status Bar */}
+                      <div className="h-8 bg-white flex justify-between items-center px-6 pt-2 shrink-0 select-none">
+                          <div className="text-[10px] font-bold text-slate-900">9:41</div>
+                          <div className="flex gap-1">
+                              <div className="w-3 h-2 bg-slate-900 rounded-[1px]"></div>
+                              <div className="w-0.5 h-2 bg-slate-900/30 rounded-[1px]"></div>
+                          </div>
+                      </div>
+                      
+                      {/* App Header */}
+                      <div className="bg-white px-4 pb-3 shrink-0 border-b border-slate-50">
+                          <div className="flex items-center gap-3 mb-3">
+                              <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#1677FF]">
+                                <ChevronRight className="rotate-180" size={20}/>
+                              </div>
+                              <div className="flex-1 text-center pr-8">
+                                  <div className="text-lg font-bold text-slate-900">入库上架</div>
+                              </div>
+                          </div>
+                          <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                              <div className="text-xs text-slate-400 mb-1">当前任务单号</div>
+                              <div className="font-mono font-bold text-slate-800 flex justify-between items-center">
+                                <span>RK-20231205-001</span>
+                                <span className="text-[10px] bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">进行中</span>
+                              </div>
+                          </div>
+                      </div>
+
+                      {/* Content Area */}
+                      <div className="p-4 space-y-4 bg-[#F9FAFB] h-full overflow-hidden flex flex-col">
+                          {/* Scan Box */}
+                          <div className="bg-white p-6 rounded-2xl border border-dashed border-slate-300 shadow-sm text-center flex flex-col items-center justify-center gap-2 group cursor-pointer hover:border-blue-400 hover:bg-blue-50/30 transition-all">
+                              <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-blue-100 group-hover:text-blue-500 transition-colors">
+                                <ScanBarcode size={24}/>
+                              </div>
+                              <div className="text-sm font-medium text-slate-500 group-hover:text-blue-600">点击扫描商品条码</div>
+                          </div>
+
+                          {/* Item Info */}
+                          <div className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex-1">
+                              <div className="flex gap-4 mb-5">
+                                  <div className="w-20 h-20 bg-slate-50 rounded-xl shrink-0 flex items-center justify-center border border-slate-100">
+                                      <Package size={32} className="text-slate-300"/>
+                                  </div>
+                                  <div>
+                                      <div className="font-bold text-slate-900 text-lg mb-1">无线蓝牙耳机 Pro</div>
+                                      <div className="text-xs text-slate-500 mb-1">规格: 白色 / 标准版</div>
+                                      <div className="text-xs font-mono text-slate-400">6941234567890</div>
+                                  </div>
+                              </div>
+                              
+                              <div className="grid grid-cols-2 gap-3 mb-4">
+                                  <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
+                                      <div className="text-xs text-blue-500 mb-1">推荐货位</div>
+                                      <div className="font-bold text-xl text-blue-700">A-02-15</div>
+                                  </div>
+                                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                      <div className="text-xs text-slate-500 mb-1">待上架</div>
+                                      <div className="font-bold text-xl text-slate-800">50 <span className="text-xs font-normal text-slate-400">件</span></div>
+                                  </div>
+                              </div>
+                              
+                              <div className="space-y-2">
+                                <div className="text-xs text-slate-400 flex justify-between">
+                                  <span>上架进度</span>
+                                  <span>20/50</span>
+                                </div>
+                                <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                  <div className="h-full w-[40%] bg-blue-500 rounded-full"></div>
+                                </div>
+                              </div>
+                          </div>
+                          
+                          {/* Action Button */}
+                          <div className="pb-8">
+                            <button className="w-full bg-[#1677FF] hover:bg-[#0958D9] text-white py-4 rounded-xl font-bold shadow-lg shadow-blue-500/30 text-lg active:scale-95 transition-all">
+                                确认上架
+                            </button>
+                          </div>
+                      </div>
                   </div>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Feature 2 */}
+            {/* Feature 2: Wave Picking */}
             <FadeIn direction="left">
-              <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
+              <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
-                    <Zap size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100">
+                    <Zap size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">智能波次策略，<br />拣货效率翻倍</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">智能波次策略，<br />拣货效率翻倍</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     支持按订单、按商品、按区域等多种波次拣货策略。系统自动规划最优拣货路径，合并拣货任务，减少走动距离，大幅提升拣货效率。
                   </p>
-                  <ul className="space-y-3 pt-2">
+                  <ul className="space-y-4 pt-4">
                     {["波次合并拣货", "最优路径规划", "摘果/播种式分拣"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-orange-500" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-orange-500 shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                   <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <Zap size={64} className="text-slate-200" />
-                    </div>
-                  </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-start">
+                   {/* Wave Dashboard */}
+                   <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                           <div className="flex items-center gap-2">
+                               <Layers size={18} className="text-orange-500"/>
+                               <span className="font-bold text-slate-700">波次任务监控</span>
+                           </div>
+                           <div className="text-xs text-slate-500">执行中: 3个</div>
+                       </div>
+                       
+                       <div className="p-6 space-y-6">
+                           {/* Wave Item */}
+                           {[
+                               { id: "W-20231205-01", progress: 85, status: "拣货中", items: 120, orders: 45, color: "bg-blue-500" },
+                               { id: "W-20231205-02", progress: 30, status: "等待中", items: 80, orders: 28, color: "bg-orange-500" }
+                           ].map((wave, i) => (
+                               <div key={i} className="bg-white border border-slate-100 rounded-xl p-4 shadow-sm">
+                                   <div className="flex justify-between items-start mb-3">
+                                       <div>
+                                           <div className="flex items-center gap-2 mb-1">
+                                               <span className="font-bold text-slate-800 text-sm">波次 {wave.id}</span>
+                                               <span className={`text-[10px] px-1.5 py-0.5 rounded text-white ${wave.progress > 50 ? 'bg-blue-500' : 'bg-orange-500'}`}>{wave.status}</span>
+                                           </div>
+                                           <div className="text-xs text-slate-500">{wave.orders} 订单 | {wave.items} 商品</div>
+                                       </div>
+                                       <div className="text-lg font-bold text-slate-700">{wave.progress}%</div>
+                                   </div>
+                                   <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-3">
+                                       <div className={`h-full rounded-full ${wave.color} transition-all duration-1000`} style={{ width: `${wave.progress}%` }}></div>
+                                   </div>
+                                   
+                                   {/* Path Optimization Visual */}
+                                   {i === 0 && (
+                                       <div className="mt-4 bg-slate-50 rounded-lg p-3">
+                                           <div className="flex items-center justify-between text-[10px] text-slate-400 mb-2">
+                                               <span>路径优化推荐</span>
+                                               <span className="text-green-600 flex items-center gap-1"><Zap size={10}/> 节省 45% 距离</span>
+                                           </div>
+                                           <div className="flex items-center gap-2 text-xs font-mono text-slate-600">
+                                               <div className="bg-white border border-slate-200 px-2 py-1 rounded">A01</div>
+                                               <ArrowRight size={12} className="text-slate-300"/>
+                                               <div className="bg-white border border-slate-200 px-2 py-1 rounded">A05</div>
+                                               <ArrowRight size={12} className="text-slate-300"/>
+                                               <div className="bg-white border border-slate-200 px-2 py-1 rounded">B03</div>
+                                               <ArrowRight size={12} className="text-slate-300"/>
+                                               <div className="bg-blue-100 text-blue-600 border border-blue-200 px-2 py-1 rounded">复核台</div>
+                                           </div>
+                                       </div>
+                                   )}
+                               </div>
+                           ))}
+                       </div>
+                   </div>
                 </div>
               </div>
             </FadeIn>
             
-             {/* Feature 3 */}
+             {/* Feature 3: Visual Locations */}
             <FadeIn direction="right">
-              <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
-                    <Layers size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center border border-green-100">
+                    <Layers size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">可视化货位管理，<br />空间利用率提升</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">可视化货位管理，<br />空间利用率提升</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     建立仓库平面图和立体货架模型。系统根据商品体积、重量、周转率推荐最佳上架货位，实现货位利用最大化和先进先出。
                   </p>
-                  <ul className="space-y-3 pt-2">
+                  <ul className="space-y-4 pt-4">
                     {["货位热力图分析", "体积重量智能匹配", "呆滞库存预警"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-green-500" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-green-500 shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                   <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <Layers size={64} className="text-slate-200" />
-                    </div>
-                  </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                   {/* Warehouse Map Card */}
+                   <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                           <div>
+                               <div className="text-lg font-bold text-slate-800">1号库区平面图</div>
+                               <div className="text-xs text-slate-400">实时热力监控</div>
+                           </div>
+                           <div className="flex gap-2">
+                               <div className="flex items-center gap-1 text-[10px] text-slate-500">
+                                   <div className="w-2 h-2 bg-blue-500 rounded-sm"></div> 满载
+                               </div>
+                               <div className="flex items-center gap-1 text-[10px] text-slate-500">
+                                   <div className="w-2 h-2 bg-slate-200 rounded-sm"></div> 空闲
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div className="p-6 bg-slate-50 relative overflow-hidden">
+                           {/* Grid Visualization */}
+                           <div className="grid grid-cols-6 gap-2">
+                               {Array.from({ length: 24 }).map((_, i) => {
+                                   const status = i % 5 === 0 ? 'empty' : (i % 3 === 0 ? 'hot' : 'normal');
+                                   let color = 'bg-blue-200';
+                                   if (status === 'empty') color = 'bg-slate-200';
+                                   if (status === 'hot') color = 'bg-blue-600';
+                                   
+                                   return (
+                                       <div key={i} className={`aspect-square rounded-md ${color} relative group cursor-pointer transition-all hover:scale-105 hover:shadow-lg`}>
+                                           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 text-[10px] text-white font-bold transition-opacity">
+                                               {status === 'empty' ? '空' : `${Math.floor(Math.random()*100)}%`}
+                                           </div>
+                                       </div>
+                                   )
+                               })}
+                           </div>
+
+                           {/* Popover Info Mockup */}
+                           <div className="absolute bottom-6 right-6 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40">
+                               <div className="text-xs font-bold text-slate-800 mb-1">货位 A-03-04</div>
+                               <div className="text-[10px] text-slate-500 mb-2">商品: 运动跑鞋</div>
+                               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+                                   <div className="bg-blue-500 h-full w-[80%]"></div>
+                               </div>
+                               <div className="text-[10px] text-right mt-1 text-blue-600">利用率 80%</div>
+                           </div>
+                       </div>
+                       
+                       <div className="px-6 py-4 bg-white border-t border-slate-100 grid grid-cols-3 divide-x divide-slate-100">
+                           <div className="text-center">
+                               <div className="text-xs text-slate-400">总货位</div>
+                               <div className="font-bold text-slate-800">2,400</div>
+                           </div>
+                           <div className="text-center">
+                               <div className="text-xs text-slate-400">已使用</div>
+                               <div className="font-bold text-blue-600">1,850</div>
+                           </div>
+                           <div className="text-center">
+                               <div className="text-xs text-slate-400">利用率</div>
+                               <div className="font-bold text-slate-800">77%</div>
+                           </div>
+                       </div>
+                   </div>
                 </div>
               </div>
             </FadeIn>

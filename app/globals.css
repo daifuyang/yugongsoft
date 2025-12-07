@@ -48,6 +48,10 @@
   }
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* 定义工具类 */
 .animate-infinite-scroll {
   animation: infinite-scroll 40s linear infinite;

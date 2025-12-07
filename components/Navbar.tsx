@@ -141,7 +141,7 @@ export default function Navbar() {
           </div>
 
           <Link href="/products" className="text-slate-600 hover:text-[#1677FF] font-medium text-[15px] transition-colors">
-            产品与服务
+            产品中心
           </Link>
           <Link href="/cases" className="text-slate-600 hover:text-[#1677FF] font-medium text-[15px] transition-colors">
             客户案例

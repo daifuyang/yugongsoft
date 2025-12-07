@@ -10,7 +10,12 @@ import {
   TrendingUp,
   LayoutGrid,
   Settings,
-  RefreshCw
+  RefreshCw,
+  ClipboardCheck,
+  AlertCircle,
+  Wallet,
+  Building2,
+  PieChart
 } from 'lucide-react';
 
 import FadeIn from '@/components/FadeIn';
@@ -217,93 +222,226 @@ export default function SupplyChain() {
       {/* --- Core Features --- */}
       <section className="py-24 bg-[#F5F7FA]">
         <div className="container mx-auto px-6">
-          <div className="space-y-24">
-            {/* Feature 1 */}
+          <div className="space-y-32">
+            {/* Feature 1: Purchase & Sales Loop */}
             <FadeIn direction="right">
-              <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-blue-100 text-[#1677FF] flex items-center justify-center">
-                    <Truck size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-blue-50 text-[#1677FF] flex items-center justify-center border border-blue-100">
+                    <Truck size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">采购销售闭环，<br />业务流程标准化</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">采购销售闭环，<br />业务流程标准化</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     从采购申请、订单、入库到销售报价、订单、出库，全流程在线流转。支持多级审批，业务数据自动关联，可追溯。
                   </p>
-                  <ul className="space-y-3 pt-2">
+                  <ul className="space-y-4 pt-4">
                     {["一键生成采购/销售合同", "历史价格查询", "信用额度管控"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-[#1677FF]" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-[#1677FF] shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                  <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <Truck size={64} className="text-slate-200" />
-                    </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                  {/* Purchase Order Card */}
+                  <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                      {/* Header */}
+                      <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                          <div className="flex items-center gap-2">
+                              <FileText size={18} className="text-blue-600"/>
+                              <span className="font-bold text-slate-700">采购订单 #PO-20231201</span>
+                          </div>
+                          <div className="px-2 py-1 rounded text-[10px] bg-blue-100 text-blue-600 font-bold">审批通过</div>
+                      </div>
+
+                      {/* Process Steps */}
+                      <div className="px-6 py-6 border-b border-slate-100">
+                          <div className="flex items-center justify-between relative">
+                              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -z-10"></div>
+                              {[
+                                  { label: "提交订单", active: true },
+                                  { label: "主管审批", active: true },
+                                  { label: "财务付款", active: true },
+                                  { label: "仓库入库", active: false }
+                              ].map((step, i) => (
+                                  <div key={i} className="flex flex-col items-center bg-white px-1">
+                                      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mb-2 border-2 ${step.active ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white border-slate-200 text-slate-300'}`}>
+                                          {step.active ? <CheckCircle2 size={14}/> : i + 1}
+                                      </div>
+                                      <div className={`text-[10px] ${step.active ? 'text-slate-700 font-bold' : 'text-slate-400'}`}>{step.label}</div>
+                                  </div>
+                              ))}
+                          </div>
+                      </div>
+
+                      {/* Item List */}
+                      <div className="p-4 bg-slate-50/30">
+                          <div className="space-y-3">
+                              {[
+                                  { name: "高性能服务器芯片 X90", qty: "500", price: "¥ 1,200", total: "¥ 600,000" },
+                                  { name: "工业级存储模块 2TB", qty: "200", price: "¥ 850", total: "¥ 170,000" }
+                              ].map((item, i) => (
+                                  <div key={i} className="bg-white p-3 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+                                      <div>
+                                          <div className="text-sm font-bold text-slate-800">{item.name}</div>
+                                          <div className="text-xs text-slate-500 mt-1">数量: {item.qty} | 单价: {item.price}</div>
+                                      </div>
+                                      <div className="text-sm font-mono font-bold text-slate-700">{item.total}</div>
+                                  </div>
+                              ))}
+                          </div>
+                          <div className="mt-4 flex justify-between items-center px-2">
+                              <div className="text-xs text-slate-500">共 700 件商品</div>
+                              <div className="text-sm font-bold text-slate-800">总计: <span className="text-blue-600">¥ 770,000</span></div>
+                          </div>
+                      </div>
                   </div>
                 </div>
               </div>
             </FadeIn>
 
-            {/* Feature 2 */}
+            {/* Feature 2: Multi-warehouse */}
             <FadeIn direction="left">
-              <div className="flex flex-col lg:flex-row-reverse items-center gap-16">
+              <div className="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center">
-                    <Package size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center border border-orange-100">
+                    <Package size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">多仓库智能管理，<br />库存实时精准</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">多仓库智能管理，<br />库存实时精准</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     支持多仓库、多货位管理。实时更新库存数量，支持调拨、盘点、组装拆卸。智能预警上下限，科学建议补货量。
                   </p>
-                  <ul className="space-y-3 pt-2">
-                    {["批次号/序列号追踪", "保质期预警管理", "库存成本自动核算(移动加权平均)"].map((item, i) => (
+                  <ul className="space-y-4 pt-4">
+                    {["批次号/序列号追踪", "保质期预警管理", "库存成本自动核算"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-orange-500" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-orange-500 shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                   <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <Package size={64} className="text-slate-200" />
-                    </div>
-                  </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-start">
+                   {/* Warehouse Card */}
+                   <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                           <div>
+                               <div className="text-lg font-bold text-slate-800">库存分布概览</div>
+                               <div className="text-xs text-slate-400">全国 5 大分仓实时数据</div>
+                           </div>
+                           <Building2 className="text-slate-300" size={24}/>
+                       </div>
+                       <div className="p-6 space-y-6">
+                           {[
+                               { name: "华东总仓 (上海)", stock: "85%", count: "12,450", status: "充足", color: "bg-blue-500" },
+                               { name: "华南分仓 (深圳)", stock: "45%", count: "4,200", status: "正常", color: "bg-green-500" },
+                               { name: "华北分仓 (北京)", stock: "15%", count: "850", status: "预警", color: "bg-red-500" },
+                           ].map((wh, i) => (
+                               <div key={i}>
+                                   <div className="flex justify-between items-end mb-2">
+                                       <div className="flex items-center gap-2">
+                                           <div className={`w-2 h-2 rounded-full ${wh.color}`}></div>
+                                           <span className="text-sm font-bold text-slate-700">{wh.name}</span>
+                                       </div>
+                                       <div className="text-xs text-slate-500">库存量: <span className="text-slate-900 font-bold">{wh.count}</span></div>
+                                   </div>
+                                   <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+                                       <div className={`h-full rounded-full ${wh.color}`} style={{ width: wh.stock }}></div>
+                                   </div>
+                                   {wh.status === "预警" && (
+                                       <div className="mt-2 flex items-center gap-1.5 text-[10px] text-red-500 bg-red-50 w-fit px-2 py-1 rounded">
+                                           <AlertCircle size={10}/>
+                                           库存不足，建议立即补货
+                                       </div>
+                                   )}
+                               </div>
+                           ))}
+                       </div>
+                       <div className="bg-slate-50 px-6 py-4 flex justify-between items-center text-xs">
+                           <span className="text-slate-500">库存总货值</span>
+                           <span className="font-bold text-slate-800 text-base">¥ 12,450,800</span>
+                       </div>
+                   </div>
                 </div>
               </div>
             </FadeIn>
             
-             {/* Feature 3 */}
+             {/* Feature 3: Finance */}
             <FadeIn direction="right">
-              <div className="flex flex-col lg:flex-row items-center gap-16">
+              <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                 <div className="lg:w-1/2 space-y-6">
-                  <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center">
-                    <CreditCard size={24} />
+                  <div className="w-14 h-14 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center border border-green-100">
+                    <Wallet size={28} />
                   </div>
-                  <h3 className="text-3xl font-bold text-slate-900">业财一体化，<br />经营利润一本账</h3>
+                  <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">业财一体化，<br />经营利润一本账</h3>
                   <p className="text-lg text-slate-600 leading-relaxed">
                     业务单据自动生成财务凭证。采购入库自动产生应付，销售出库自动产生应收。实时核算销售毛利，老板随时查看经营报表。
                   </p>
-                  <ul className="space-y-3 pt-2">
+                  <ul className="space-y-4 pt-4">
                     {["应收应付智能对账", "费用分摊与成本核算", "资产负债表/利润表自动生成"].map((item, i) => (
                       <li key={i} className="flex items-center gap-3 text-slate-700">
-                        <CheckCircle2 size={18} className="text-green-500" />
-                        <span>{item}</span>
+                        <CheckCircle2 size={20} className="text-green-500 shrink-0" />
+                        <span className="font-medium">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="lg:w-1/2">
-                   <div className="relative bg-white rounded-2xl p-2 shadow-2xl shadow-slate-200/50 border border-white">
-                    <div className="aspect-[4/3] bg-slate-50 rounded-xl flex items-center justify-center border border-slate-100">
-                        <CreditCard size={64} className="text-slate-200" />
-                    </div>
-                  </div>
+                <div className="lg:w-1/2 flex justify-center lg:justify-end">
+                   {/* Finance Card */}
+                   <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+                       <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                           <div className="flex items-center gap-3">
+                               <div className="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center">
+                                   <PieChart size={20}/>
+                               </div>
+                               <div>
+                                   <div className="text-sm font-bold text-slate-800">本月经营概况</div>
+                                   <div className="text-[10px] text-slate-400">2023年12月</div>
+                               </div>
+                           </div>
+                           <div className="text-green-600 bg-green-50 px-3 py-1 rounded-full text-xs font-bold">盈利</div>
+                       </div>
+                       
+                       <div className="grid grid-cols-2 divide-x divide-slate-100 border-b border-slate-100">
+                           <div className="p-6 text-center">
+                               <div className="text-xs text-slate-500 mb-1">销售收入</div>
+                               <div className="text-xl font-bold text-slate-800">¥ 845,200</div>
+                               <div className="text-[10px] text-green-500 mt-1">↑ 12% 环比</div>
+                           </div>
+                           <div className="p-6 text-center">
+                               <div className="text-xs text-slate-500 mb-1">采购成本</div>
+                               <div className="text-xl font-bold text-slate-800">¥ 524,100</div>
+                               <div className="text-[10px] text-slate-400 mt-1">占比 62%</div>
+                           </div>
+                       </div>
+
+                       <div className="p-6 space-y-4">
+                           <div className="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
+                               <div className="flex items-center gap-3">
+                                   <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-blue-500">
+                                       <CreditCard size={16}/>
+                                   </div>
+                                   <span className="text-sm font-bold text-slate-700">毛利润</span>
+                               </div>
+                               <div className="text-right">
+                                   <div className="font-bold text-slate-800">¥ 321,100</div>
+                                   <div className="text-[10px] text-slate-400">毛利率 38%</div>
+                               </div>
+                           </div>
+                           <div className="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
+                               <div className="flex items-center gap-3">
+                                   <div className="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center text-orange-500">
+                                       <Wallet size={16}/>
+                                   </div>
+                                   <span className="text-sm font-bold text-slate-700">净利润</span>
+                               </div>
+                               <div className="text-right">
+                                   <div className="font-bold text-slate-800">¥ 186,500</div>
+                                   <div className="text-[10px] text-slate-400">净利率 22%</div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
                 </div>
               </div>
             </FadeIn>

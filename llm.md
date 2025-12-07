@@ -24,7 +24,6 @@
     *   **Glassmorphism**: 大量使用背景模糊 (`backdrop-blur`) 和半透明白底。
     *   **Shadows**: 柔和的蓝色系弥散阴影 (`shadow-blue-500/20`)，拒绝生硬的黑色投影。
     *   **Radius**: 统一使用 `rounded-xl` 或 `rounded-2xl`。
-    *   **3D Perspective**: Hero 区域使用 CSS 3D 透视效果。
 
 #### 3. 核心组件规范 (Components Specs)
 
@@ -73,6 +72,18 @@
         *   **禁止**: 3D 透视 (`perspective`, `rotate-x/y`)、悬浮浮层 (`floating widgets`)、复杂交互动效。
         *   **要求**: 干净、扁平的卡片式设计，使用柔和阴影 (`shadow-2xl`)，圆角 `rounded-2xl`。
         *   **内容**: 模拟真实系统界面，数据/日志/图表需**填满容器**，禁止出现明显留白。
+*   **Core Features (核心特性)**:
+    *   **布局**: 左右交替布局 (Zig-Zag)，间距统一为 `gap-16 lg:gap-24`。
+    *   **左侧文案**:
+        *   Icon容器: `w-14 h-14 rounded-2xl`，带浅色背景与边框。
+        *   列表: 使用 `CheckCircle2` 图标，间距 `space-y-4`。
+    *   **右侧插图 (UI Mockups)**:
+        *   **必须**: 展示**高保真、扁平化**的 UI 界面，模拟真实业务场景（如订单详情、PDA 界面、库存列表）。
+        *   **App样机**: 移动端/PDA界面必须使用**白色极简边框** (`rounded-[3rem] border-[8px] border-slate-900` 类似 iPhone 风格)，禁止使用深色模式外壳或老旧样式。
+        *   **禁止**: **弹动浮层 (Bouncing Floating Widgets)**。禁止使用 `animate-bounce` 等干扰阅读的动效。所有元素应整齐排列在卡片内部或静止展示。
+        *   **禁止**: 使用单一的大图标占位，或抽象的概念图。
+        *   **禁止**: 3D 旋转、漂浮元素。
+        *   **样式**: 统一使用 `bg-white rounded-2xl shadow-xl border border-slate-100`。内部数据需丰富真实。
 
 #### 4. SEO 与性能优化
 *   **Metadata**: 配置详细的 `title`, `description`, `keywords`, `openGraph`。
@@ -92,3 +103,9 @@
 *   `components/home/LogoWall.tsx`
 *   `components/home/IndustrySolutions.tsx`
 *   ... (其他模块)
+
+#### 6. 最近更新与要求 (Latest Updates & Requirements)
+*   **Hero 动画优化**: 使用 `framer-motion` 替代 CSS 动画，具体参数：`animate={{ y: [0, -15, 0] }}`。
+*   **视觉优化**: 界面需要更“大气”，避免元素过小或显得局促。Hero Dashboard 及核心特性插图需增加视觉比重（如内边距、字体大小、容器尺寸）。
+*   **代码维护**: 及时将会话中的新要求整理至此文档。
+
