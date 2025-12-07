@@ -20,15 +20,15 @@ interface FeatureCardProps {
   ctaText?: string;
 }
 
-export default function FeatureCard({ 
-  icon, 
-  title, 
-  desc, 
-  className = "", 
-  variant = 'plain', 
+export default function FeatureCard({
+  icon,
+  title,
+  desc,
+  className = "",
+  variant = 'plain',
   size = 'lg',
-  href, 
-  ctaText = "了解更多解决方案" 
+  href,
+  ctaText = "了解更多解决方案"
 }: FeatureCardProps) {
   // 尺寸配置映射
   const sizeMap = {
@@ -87,7 +87,7 @@ export default function FeatureCard({
           )}
         </div>
       )}
-      
+
       <h3 className={`${currentSize.title} font-bold text-slate-900 mb-3 group-hover:text-[#1677FF] transition-colors`}>{title}</h3>
       <p className="text-slate-500 leading-relaxed">{desc}</p>
 
