@@ -1,5 +1,4 @@
-'use client';
-
+import * as motion from "framer-motion/client";
 import {
     ArrowRight,
     RefreshCw,
@@ -10,11 +9,11 @@ import {
     FileCode,
     GitPullRequest,
     Activity,
-    Database,
-    Timer,
 } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
-import { motion } from 'framer-motion';
+import Section from '@/components/ui/Section';
+import FeatureGrid from '@/components/ui/FeatureGrid';
+import CtaSection from '@/components/ui/CtaSection';
 
 export default function LegacySystem() {
     return (
@@ -66,150 +65,135 @@ export default function LegacySystem() {
                         </div>
 
                         {/* Right: Code Maintenance Abstract */}
-                        <div className="lg:w-1/2 relative">
-                            <FadeIn delay={0.2} direction="left" duration={0.8}>
-                                <div className="relative">
-                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl -z-10 animate-pulse"></div>
+                        <div className="lg:w-1/2 relative flex justify-center lg:justify-end">
+                            <FadeIn delay={0.2} direction="left" fullWidth duration={0.8}>
+                                <motion.div className="relative" animate={{ y: [0, -20, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+                                    {/* Background Glows - Subtler */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-50/80 rounded-full blur-[80px] -z-10"></div>
 
-                                    {/* Main Dashboard Card */}
-                                    <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/50 p-6 sm:p-8 relative z-10">
-
+                                    {/* Main Card */}
+                                    <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden relative z-10">
                                         {/* Header */}
-                                        <div className="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                                        <div className="px-6 py-4 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-lg bg-[#1677FF] flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
-                                                    <Activity size={20} />
+                                                <div className="w-8 h-8 rounded-lg bg-[#1677FF] flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+                                                    <Activity size={16} />
                                                 </div>
-                                                <div>
-                                                    <div className="text-sm font-bold text-slate-800">系统健康监控</div>
-                                                    <div className="text-[10px] text-slate-500">System Health Monitor</div>
-                                                </div>
+                                                <span className="font-bold text-slate-800 tracking-tight">系统健康监控中心</span>
                                             </div>
-                                            <div className="flex items-center gap-2 px-2 py-1 bg-green-50 rounded-full border border-green-100">
-                                                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                                <span className="text-xs font-semibold text-green-600">Running</span>
-                                            </div>
-                                        </div>
-
-                                        {/* Core Metric: Health Score */}
-                                        <div className="flex items-center justify-between mb-8">
-                                            <div className="relative w-32 h-32 flex items-center justify-center flex-shrink-0">
-                                                {/* SVG Ring */}
-                                                <svg className="w-full h-full transform -rotate-90">
-                                                    <circle cx="64" cy="64" r="56" stroke="#f1f5f9" strokeWidth="12" fill="transparent" />
-                                                    <circle cx="64" cy="64" r="56" stroke="#1677FF" strokeWidth="12" fill="transparent" strokeDasharray="351.86" strokeDashoffset="35" strokeLinecap="round" />
-                                                </svg>
-                                                <div className="absolute flex flex-col items-center">
-                                                    <span className="text-3xl font-bold text-slate-800">92<span className="text-sm text-slate-400">%</span></span>
-                                                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider">Health</span>
-                                                </div>
-                                            </div>
-                                            <div className="flex-1 ml-6 sm:ml-8 space-y-4">
-                                                <div className="space-y-1">
-                                                    <div className="flex justify-between items-center">
-                                                        <div className="text-xs text-slate-500 font-medium">代码规范度</div>
-                                                        <div className="text-xs font-bold text-slate-800">A+ Level</div>
-                                                    </div>
-                                                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                                        <div className="bg-green-500 w-[95%] h-full rounded-full"></div>
-                                                    </div>
-                                                </div>
-
-                                                <div className="space-y-1">
-                                                    <div className="flex justify-between items-center">
-                                                        <div className="text-xs text-slate-500 font-medium">安全漏洞</div>
-                                                        <div className="text-xs font-bold text-slate-800">0 Issues</div>
-                                                    </div>
-                                                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                                        <div className="bg-blue-500 w-[100%] h-full rounded-full"></div>
-                                                    </div>
-                                                </div>
+                                            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 border border-green-100 rounded-full">
+                                                <span className="relative flex h-2 w-2">
+                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                                </span>
+                                                <span className="text-[10px] font-semibold text-green-600">运行正常</span>
                                             </div>
                                         </div>
 
-                                        {/* Comparison Grid */}
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                                                <div className="flex items-center gap-2 mb-2 text-slate-500">
-                                                    <Timer size={14} />
-                                                    <span className="text-xs font-bold">平均响应</span>
+                                        <div className="p-6">
+                                            {/* Top Section: Gauge & Primary Metrics */}
+                                            <div className="flex items-center gap-8 mb-8">
+                                                {/* Health Gauge */}
+                                                <div className="relative w-36 h-36 flex items-center justify-center flex-shrink-0">
+                                                    <svg className="w-full h-full transform -rotate-90">
+                                                        <circle cx="72" cy="72" r="60" stroke="#f1f5f9" strokeWidth="12" fill="transparent" />
+                                                        <motion.circle
+                                                            initial={{ strokeDashoffset: 377 }}
+                                                            animate={{ strokeDashoffset: 37 }} // (377 * (1 - 0.92)) approx
+                                                            transition={{ duration: 1.5, ease: "easeOut" }}
+                                                            cx="72" cy="72" r="60"
+                                                            stroke="#1677FF"
+                                                            strokeWidth="12"
+                                                            fill="transparent"
+                                                            strokeDasharray="377"
+                                                            strokeLinecap="round"
+                                                        />
+                                                    </svg>
+                                                    <div className="absolute flex flex-col items-center">
+                                                        <span className="text-4xl font-bold text-slate-800 tracking-tighter">98<span className="text-lg text-slate-400 align-top ml-0.5">分</span></span>
+                                                        <span className="text-[10px] text-slate-400 font-medium mt-1">综合健康评分</span>
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-baseline gap-2 flex-wrap">
-                                                    <span className="text-2xl font-bold text-slate-800">50ms</span>
-                                                    <span className="text-xs text-slate-400 line-through decoration-slate-400/50">1200ms</span>
-                                                </div>
-                                                <div className="mt-2 text-[10px] text-green-600 bg-green-100 inline-block px-1.5 py-0.5 rounded font-bold">
-                                                    提升 2400%
+
+                                                {/* Vertical Divider */}
+                                                <div className="w-px h-24 bg-slate-100 hidden sm:block"></div>
+
+                                                {/* Right Metrics List */}
+                                                <div className="flex-1 space-y-5 min-w-[180px]">
+                                                    <div className="space-y-1.5">
+                                                        <div className="flex justify-between items-center text-xs">
+                                                            <span className="text-slate-500 font-medium">代码规范度</span>
+                                                            <span className="text-slate-800 font-bold">A+ (优秀)</span>
+                                                        </div>
+                                                        <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                                            <motion.div
+                                                                initial={{ width: 0 }}
+                                                                animate={{ width: "95%" }}
+                                                                transition={{ duration: 1, delay: 0.2 }}
+                                                                className="bg-emerald-500 w-[95%] h-full rounded-full"
+                                                            ></motion.div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="space-y-1.5">
+                                                        <div className="flex justify-between items-center text-xs">
+                                                            <span className="text-slate-500 font-medium">安全指数</span>
+                                                            <span className="text-slate-800 font-bold">100%</span>
+                                                        </div>
+                                                        <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                                            <motion.div
+                                                                initial={{ width: 0 }}
+                                                                animate={{ width: "100%" }}
+                                                                transition={{ duration: 1, delay: 0.4 }}
+                                                                className="bg-blue-500 w-full h-full rounded-full"
+                                                            ></motion.div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="space-y-1.5">
+                                                        <div className="flex justify-between items-center text-xs">
+                                                            <span className="text-slate-500 font-medium">数据库性能</span>
+                                                            <span className="text-slate-800 font-bold">Stable</span>
+                                                        </div>
+                                                        <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                                                            <motion.div
+                                                                initial={{ width: 0 }}
+                                                                animate={{ width: "92%" }}
+                                                                transition={{ duration: 1, delay: 0.6 }}
+                                                                className="bg-indigo-500 w-[92%] h-full rounded-full"
+                                                            ></motion.div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                                                <div className="flex items-center gap-2 mb-2 text-slate-500">
-                                                    <Bug size={14} />
-                                                    <span className="text-xs font-bold">月均故障</span>
+
+                                            {/* Bottom Grid: Stats */}
+                                            <div className="grid grid-cols-3 gap-3 pt-6 border-t border-slate-50">
+                                                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-blue-100 transition-colors group">
+                                                    <div className="text-[10px] text-slate-500 mb-1 group-hover:text-blue-500 transition-colors">平均响应</div>
+                                                    <div className="text-lg font-bold text-slate-800">45ms</div>
+                                                    <div className="text-[10px] text-green-600 font-medium flex items-center gap-0.5 mt-0.5">
+                                                        <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                                                        -92%
+                                                    </div>
                                                 </div>
-                                                <div className="flex items-baseline gap-2 flex-wrap">
-                                                    <span className="text-2xl font-bold text-slate-800">0</span>
-                                                    <span className="text-xs text-slate-400 line-through decoration-slate-400/50">15+</span>
+                                                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-blue-100 transition-colors group">
+                                                    <div className="text-[10px] text-slate-500 mb-1 group-hover:text-blue-500 transition-colors">月故障数</div>
+                                                    <div className="text-lg font-bold text-slate-800">0 次</div>
+                                                    <div className="text-[10px] text-green-600 font-medium flex items-center gap-0.5 mt-0.5">
+                                                        <ShieldCheck size={10} />
+                                                        已清零
+                                                    </div>
                                                 </div>
-                                                <div className="mt-2 text-[10px] text-green-600 bg-green-100 inline-block px-1.5 py-0.5 rounded font-bold">
-                                                    稳定性 100%
+                                                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 hover:border-blue-100 transition-colors group">
+                                                    <div className="text-[10px] text-slate-500 mb-1 group-hover:text-blue-500 transition-colors">维护成本</div>
+                                                    <div className="text-lg font-bold text-slate-800">↓ 60%</div>
+                                                    <div className="text-[10px] text-green-600 font-medium flex items-center gap-0.5 mt-0.5">
+                                                        节省开支
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                    {/* Floating 1: Security (Top Right) */}
-                                    <motion.div
-                                        className="absolute -right-6 top-10 z-20"
-                                        animate={{ y: [0, -10, 0] }}
-                                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                    >
-                                        <div className="bg-white p-3 rounded-xl shadow-xl border border-slate-100 flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-500">
-                                                <ShieldCheck size={20} />
-                                            </div>
-                                            <div>
-                                                <div className="text-[10px] text-slate-500 font-bold uppercase">Security</div>
-                                                <div className="text-xs font-bold text-slate-800">核心漏洞已修复</div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Floating 2: Database (Bottom Left) */}
-                                    <motion.div
-                                        className="absolute -left-8 bottom-24 z-20"
-                                        animate={{ y: [0, 12, 0] }}
-                                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                    >
-                                        <div className="bg-slate-900 p-3 rounded-xl shadow-xl border border-slate-800 text-white flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400">
-                                                <Database size={20} />
-                                            </div>
-                                            <div>
-                                                <div className="text-[10px] text-slate-400 font-bold uppercase">Storage</div>
-                                                <div className="text-xs font-bold">查询性能优化</div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-
-                                    {/* Floating 3: Code Refactor (Bottom Right) */}
-                                    <motion.div
-                                        className="absolute -right-4 -bottom-6 z-20"
-                                        animate={{ y: [0, -8, 0] }}
-                                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                                    >
-                                        <div className="bg-[#1677FF] p-3 rounded-xl shadow-xl shadow-blue-500/30 text-white flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white">
-                                                <FileCode size={20} />
-                                            </div>
-                                            <div>
-                                                <div className="text-[10px] text-blue-100 font-bold uppercase">Refactor</div>
-                                                <div className="text-xs font-bold">代码重构完成</div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-
-                                </div>
+                                </motion.div>
                             </FadeIn>
                         </div>
                     </div>
@@ -217,25 +201,17 @@ export default function LegacySystem() {
             </section>
 
             {/* --- Service Features --- */}
-            <section className="py-24 bg-white">
-                <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            { icon: <Bug size={28} />, title: "Bug 修复与排查", desc: "深入分析系统日志，快速定位并修复导致系统崩溃、数据错误等疑难杂症，恢复系统正常运行。" },
-                            { icon: <RefreshCw size={28} />, title: "性能优化", desc: "针对系统卡顿、加载慢等问题，从数据库索引、代码逻辑、缓存机制等多维度进行优化提速。" },
-                            { icon: <Code size={28} />, title: "功能二次开发", desc: "在不破坏原有系统架构的基础上，扩展新的业务功能模块，满足企业不断发展的业务需求。" }
-                        ].map((item, i) => (
-                            <FadeIn key={i} delay={i * 0.1} direction="up">
-                                <div className="p-8 rounded-2xl bg-slate-50 hover:bg-white border border-slate-100 hover:border-blue-100 hover:shadow-xl transition-all duration-300 group h-full">
-                                    <div className="w-12 h-12 bg-blue-100 text-[#1677FF] rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                                    <p className="text-slate-600 h-12 line-clamp-2">{item.desc}</p>
-                                </div>
-                            </FadeIn>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Section className="py-24 bg-white">
+                <FeatureGrid
+                    items={[
+                        { icon: <Bug size={28} />, title: "Bug 修复与排查", desc: "深入分析系统日志，快速定位并修复导致系统崩溃、数据错误等疑难杂症，恢复系统正常运行。" },
+                        { icon: <RefreshCw size={28} />, title: "性能优化", desc: "针对系统卡顿、加载慢等问题，从数据库索引、代码逻辑、缓存机制等多维度进行优化提速。" },
+                        { icon: <Code size={28} />, title: "功能二次开发", desc: "在不破坏原有系统架构的基础上，扩展新的业务功能模块，满足企业不断发展的业务需求。" },
+                    ]}
+                    cols={3}
+                    animated
+                />
+            </Section>
 
             {/* --- Maintenance Workflow --- */}
             <section className="py-24 bg-[#F5F7FA]">
@@ -274,20 +250,11 @@ export default function LegacySystem() {
             </section>
 
             {/* --- CTA --- */}
-            <section className="py-24 bg-slate-900 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20 bg-[url('/images/grid.svg')]"></div>
-                <div className="container mx-auto px-6 text-center relative z-10">
-                    <FadeIn direction="up">
-                        <h2 className="text-4xl font-bold text-white mb-6">拯救您的“僵尸”系统</h2>
-                        <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-                            别让投入巨资开发的系统成为摆设。立即联系我们进行系统体检。
-                        </p>
-                        <button className="btn bg-[#1677FF] hover:bg-[#0958D9] text-white px-12 py-5 h-auto rounded-full font-bold text-xl shadow-xl shadow-blue-500/30 border-none transition-all hover:scale-105">
-                            预约系统体检
-                        </button>
-                    </FadeIn>
-                </div>
-            </section>
+            <CtaSection
+                title="拯救您的“僵尸”系统"
+                description="别让老系统成为业务发展的绊脚石，我们帮您重塑系统价值。"
+                primaryAction={{ label: "申请系统评估", href: "/contact" }}
+            />
 
         </main>
     );

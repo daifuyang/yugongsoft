@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
+import CheckList from "@/components/ui/CheckList";
 
 export default function DeliveryProcess() {
   return (
@@ -42,17 +43,14 @@ export default function DeliveryProcess() {
             <p className="text-slate-500 mb-8 leading-relaxed text-lg">
               传统的软件外包往往面临延期、超支、质量不可控的风险。愚公软件通过标准化的管理体系，让软件开发像工业生产一样精密可控。
             </p>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <ShieldCheck className="text-[#52C41A]" size={20} /> <span>透明化项目管理，进度实时可查</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <ShieldCheck className="text-[#52C41A]" size={20} /> <span>严格的代码审查与自动化测试</span>
-              </li>
-              <li className="flex items-center gap-3 text-slate-700 font-medium">
-                <ShieldCheck className="text-[#52C41A]" size={20} /> <span>终身售后技术支持</span>
-              </li>
-            </ul>
+            <CheckList
+              items={[
+                "透明化项目管理，进度实时可查",
+                "严格的代码审查与自动化测试",
+                "终身售后技术支持",
+              ]}
+              icon={<ShieldCheck size={20} className="text-[#52C41A]" />}
+            />
             <Link href="/delivery">
               <button className="btn btn-outline border-slate-200 text-slate-600 hover:border-[#1677FF] hover:text-[#1677FF] hover:bg-blue-50 mt-10 px-8 h-12 rounded">
                 查看交付标准

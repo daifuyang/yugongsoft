@@ -23,6 +23,10 @@ import {
 
 import FadeIn from '@/components/FadeIn';
 import NumberTicker from '@/components/NumberTicker';
+import CtaSection from '@/components/ui/CtaSection';
+
+import FeatureGrid from '@/components/ui/FeatureGrid';
+import PhoneMockup from '@/components/ui/PhoneMockup';
 
 export default function Catering() {
   return (
@@ -177,8 +181,6 @@ export default function Catering() {
                 </div>
               </FadeIn>
 
-              {/* Decorative Background - Glass Effect */}
-              <div className="absolute -z-10 top-12 -right-12 w-full h-full bg-gradient-to-br from-blue-100/40 to-purple-100/40 rounded-3xl blur-2xl opacity-70"></div>
             </motion.div>
           </div>
         </div>
@@ -222,40 +224,32 @@ export default function Catering() {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "高峰期点餐慢",
-                desc: "用餐高峰期服务员忙不过来，顾客排队点餐体验差，容易流失。",
-                icon: Clock,
-                color: "text-orange-500",
-                bg: "bg-orange-50"
-              },
-              {
-                title: "外卖接单混乱",
-                desc: "美团、饿了么多平台接单，需要在不同设备间切换，容易漏单错单。",
-                icon: ShoppingBag,
-                color: "text-blue-500",
-                bg: "bg-blue-50"
-              },
-              {
-                title: "顾客留存难",
-                desc: "顾客吃完就走，无法沉淀为会员，缺乏有效的二次营销手段。",
-                icon: Users,
-                color: "text-purple-500",
-                bg: "bg-purple-50"
-              }
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                <div className="group bg-[#F8FAFC] hover:bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full hover:-translate-y-2">
-                  <div className={`w-14 h-14 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center ${item.color} ${item.bg} group-hover:scale-110 transition-all mb-6`}>
-                    <item.icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+          <div className="mb-16">
+            <FadeIn direction="up">
+              <FeatureGrid
+                items={[
+                  {
+                    title: "高峰期点餐慢",
+                    desc: "用餐高峰期服务员忙不过来，顾客排队点餐体验差，容易流失。",
+                    icon: <Clock size={28} />
+                  },
+                  {
+                    title: "外卖接单混乱",
+                    desc: "美团、饿了么多平台接单，需要在不同设备间切换，容易漏单错单。",
+                    icon: <ShoppingBag size={28} />
+                  },
+                  {
+                    title: "顾客留存难",
+                    desc: "顾客吃完就走，无法沉淀为会员，缺乏有效的二次营销手段。",
+                    icon: <Users size={28} />
+                  }
+                ]}
+                cols={3}
+                animated
+                variant="badge"
+                size="lg"
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -291,16 +285,9 @@ export default function Catering() {
                   {/* Background Glow */}
                   <div className="absolute w-80 h-80 bg-blue-200/40 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-                  <div className="relative w-[280px] h-[560px] bg-slate-900 rounded-[3rem] border-8 border-slate-900 shadow-2xl shadow-blue-500/20 overflow-hidden z-10">
-                    {/* Status Bar */}
-                    <div className="h-6 bg-white flex justify-between items-center px-6 text-[10px] font-bold text-slate-800">
-                      <span>9:41</span>
-                      <div className="flex gap-1">
-                        <div className="w-3 h-3 bg-slate-800 rounded-full"></div>
-                      </div>
-                    </div>
+                  <PhoneMockup className="w-[280px] h-[560px] shadow-blue-500/20 z-10">
                     {/* App Header */}
-                    <div className="bg-white p-4 flex items-center justify-between border-b border-slate-100">
+                    <div className="bg-white p-4 flex items-center justify-between border-b border-slate-100 shrink-0">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full bg-slate-100"></div>
                         <div className="text-sm font-bold">愚公小馆</div>
@@ -308,8 +295,8 @@ export default function Catering() {
                       <MoreHorizontal size={20} className="text-slate-400" />
                     </div>
                     {/* Menu Content */}
-                    <div className="bg-slate-50 h-full p-3 space-y-3 overflow-hidden">
-                      <div className="flex gap-2 overflow-hidden pb-2">
+                    <div className="bg-slate-50 flex-1 p-3 space-y-3 overflow-y-auto no-scrollbar">
+                      <div className="flex gap-2 overflow-hidden pb-2 shrink-0">
                         <div className="bg-[#1677FF] text-white text-xs px-3 py-1 rounded-full whitespace-nowrap">热销榜</div>
                         <div className="bg-white text-slate-500 text-xs px-3 py-1 rounded-full whitespace-nowrap">折扣菜</div>
                         <div className="bg-white text-slate-500 text-xs px-3 py-1 rounded-full whitespace-nowrap">主食</div>
@@ -330,9 +317,11 @@ export default function Catering() {
                           </div>
                         </div>
                       ))}
+                      {/* Spacer for Cart Bar */}
+                      <div className="h-16"></div>
                     </div>
                     {/* Cart Bar */}
-                    <div className="absolute bottom-4 left-4 right-4 bg-slate-800 text-white p-3 rounded-full flex justify-between items-center shadow-xl shadow-slate-900/20">
+                    <div className="absolute bottom-4 left-4 right-4 bg-slate-800 text-white p-3 rounded-full flex justify-between items-center shadow-xl shadow-slate-900/20 z-10">
                       <div className="flex items-center gap-3 pl-2">
                         <div className="relative">
                           <ShoppingBag size={20} />
@@ -342,7 +331,7 @@ export default function Catering() {
                       </div>
                       <div className="bg-[#1677FF] px-4 py-1.5 rounded-full text-xs font-bold">去结算</div>
                     </div>
-                  </div>
+                  </PhoneMockup>
                 </div>
               </div>
             </FadeIn>
@@ -370,78 +359,77 @@ export default function Catering() {
 
                 {/* Illustration: Dashboard List (Clean & Flat) */}
                 <div className="lg:w-1/2 relative flex justify-center lg:justify-start">
-                   {/* Background Glow - Expanded */}
-                   <div className="absolute w-[500px] h-[500px] bg-orange-100/50 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+                  {/* Background Glow - Expanded */}
+                  <div className="absolute w-[500px] h-[500px] bg-orange-100/50 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
 
-                   <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden z-10 transform hover:scale-[1.01] transition-transform duration-500">
-                      <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                          <div className="flex gap-2">
-                              <span className="w-3.5 h-3.5 rounded-full bg-slate-300"></span>
-                              <span className="w-3.5 h-3.5 rounded-full bg-slate-300"></span>
-                          </div>
-                          <div className="text-sm font-bold text-slate-500">外卖接单中心</div>
-                          <div className="flex gap-2">
-                              <div className="bg-white border border-slate-200 p-1.5 rounded-md text-slate-400 shadow-sm">
-                                  <Search size={14} />
-                              </div>
-                          </div>
+                  <div className="relative w-full max-w-xl bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-slate-100 overflow-hidden z-10 transform hover:scale-[1.01] transition-transform duration-500">
+                    <div className="p-5 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                      <div className="flex gap-2">
+                        <span className="w-3.5 h-3.5 rounded-full bg-slate-300"></span>
+                        <span className="w-3.5 h-3.5 rounded-full bg-slate-300"></span>
                       </div>
-                      <div className="p-0">
-                          <table className="w-full text-left text-sm">
-                              <thead className="bg-slate-50 text-slate-500">
-                                  <tr>
-                                      <th className="p-4 font-medium pl-6">来源</th>
-                                      <th className="p-4 font-medium">单号</th>
-                                      <th className="p-4 font-medium">状态</th>
-                                      <th className="p-4 font-medium text-right pr-6">金额</th>
-                                  </tr>
-                              </thead>
-                              <tbody className="divide-y divide-slate-50">
-                                  {[
-                                      { source: '美团', color: 'bg-yellow-400', id: '#1001', status: '待接单', price: '45.0' },
-                                      { source: '饿了么', color: 'bg-blue-500', id: '#1002', status: '配送中', price: '32.5' },
-                                      { source: '美团', color: 'bg-yellow-400', id: '#1003', status: '已完成', price: '88.0' },
-                                      { source: '饿了么', color: 'bg-blue-500', id: '#1004', status: '已完成', price: '26.0' },
-                                      { source: '美团', color: 'bg-yellow-400', id: '#1005', status: '已完成', price: '156.0' },
-                                      { source: '饿了么', color: 'bg-blue-500', id: '#1006', status: '已取消', price: '0.0' },
-                                  ].map((row, i) => (
-                                      <tr key={i} className="group hover:bg-blue-50/30 transition-colors">
-                                          <td className="p-4 pl-6">
-                                              <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm ${row.color}`}>
-                                                  {row.source[0]}
-                                              </div>
-                                          </td>
-                                          <td className="p-4 font-mono text-slate-600 font-medium">{row.id}</td>
-                                          <td className="p-4">
-                                              <span className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${
-                                                row.status === '待接单' ? 'bg-red-50 text-red-500 animate-pulse border border-red-100' : 
-                                                row.status === '配送中' ? 'bg-blue-50 text-blue-500 border border-blue-100' :
-                                                'bg-slate-50 text-slate-500 border border-slate-100'
-                                              }`}>
-                                                  {row.status}
-                                              </span>
-                                          </td>
-                                          <td className="p-4 text-right font-bold text-slate-700 pr-6">¥{row.price}</td>
-                                      </tr>
-                                  ))}
-                              </tbody>
-                          </table>
+                      <div className="text-sm font-bold text-slate-500">外卖接单中心</div>
+                      <div className="flex gap-2">
+                        <div className="bg-white border border-slate-200 p-1.5 rounded-md text-slate-400 shadow-sm">
+                          <Search size={14} />
+                        </div>
                       </div>
-                      {/* Footer / Pagination */}
-                      <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center">
-                          <div className="text-xs text-slate-400">
-                              共 <span className="font-bold text-slate-600">128</span> 条订单
-                          </div>
-                          <div className="flex gap-2">
-                              <button className="p-1.5 rounded-md bg-white border border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300 transition-colors shadow-sm disabled:opacity-50">
-                                  <ChevronLeft size={14} />
-                              </button>
-                              <button className="p-1.5 rounded-md bg-white border border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300 transition-colors shadow-sm">
-                                  <ChevronRight size={14} />
-                              </button>
-                          </div>
+                    </div>
+                    <div className="p-0">
+                      <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-50 text-slate-500">
+                          <tr>
+                            <th className="p-4 font-medium pl-6">来源</th>
+                            <th className="p-4 font-medium">单号</th>
+                            <th className="p-4 font-medium">状态</th>
+                            <th className="p-4 font-medium text-right pr-6">金额</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-50">
+                          {[
+                            { source: '美团', color: 'bg-yellow-400', id: '#1001', status: '待接单', price: '45.0' },
+                            { source: '饿了么', color: 'bg-blue-500', id: '#1002', status: '配送中', price: '32.5' },
+                            { source: '美团', color: 'bg-yellow-400', id: '#1003', status: '已完成', price: '88.0' },
+                            { source: '饿了么', color: 'bg-blue-500', id: '#1004', status: '已完成', price: '26.0' },
+                            { source: '美团', color: 'bg-yellow-400', id: '#1005', status: '已完成', price: '156.0' },
+                            { source: '饿了么', color: 'bg-blue-500', id: '#1006', status: '已取消', price: '0.0' },
+                          ].map((row, i) => (
+                            <tr key={i} className="group hover:bg-blue-50/30 transition-colors">
+                              <td className="p-4 pl-6">
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-sm ${row.color}`}>
+                                  {row.source[0]}
+                                </div>
+                              </td>
+                              <td className="p-4 font-mono text-slate-600 font-medium">{row.id}</td>
+                              <td className="p-4">
+                                <span className={`text-[10px] px-2.5 py-1 rounded-full font-medium ${row.status === '待接单' ? 'bg-red-50 text-red-500 animate-pulse border border-red-100' :
+                                    row.status === '配送中' ? 'bg-blue-50 text-blue-500 border border-blue-100' :
+                                      'bg-slate-50 text-slate-500 border border-slate-100'
+                                  }`}>
+                                  {row.status}
+                                </span>
+                              </td>
+                              <td className="p-4 text-right font-bold text-slate-700 pr-6">¥{row.price}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    {/* Footer / Pagination */}
+                    <div className="p-4 border-t border-slate-100 bg-slate-50/30 flex justify-between items-center">
+                      <div className="text-xs text-slate-400">
+                        共 <span className="font-bold text-slate-600">128</span> 条订单
                       </div>
-                   </div>
+                      <div className="flex gap-2">
+                        <button className="p-1.5 rounded-md bg-white border border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300 transition-colors shadow-sm disabled:opacity-50">
+                          <ChevronLeft size={14} />
+                        </button>
+                        <button className="p-1.5 rounded-md bg-white border border-slate-200 text-slate-400 hover:text-slate-600 hover:border-slate-300 transition-colors shadow-sm">
+                          <ChevronRight size={14} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </FadeIn>
@@ -522,32 +510,21 @@ export default function Catering() {
       </section>
 
       {/* --- CTA Section --- */}
-      <section className="py-24 bg-[#1677FF] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://gw.alipayobjects.com/zos/rmsportal/gGlUMYGEIvjDOxsXdxkS.png')] bg-repeat opacity-50"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn direction="up">
-            <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
-              让餐厅经营更简单
-            </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-              助力 10000+ 餐饮门店实现数字化升级，立刻开启您的智慧餐饮之旅。
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <button className="btn bg-white text-[#1677FF] hover:bg-blue-50 px-10 py-4 h-auto rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all border-none hover:-translate-y-1">
-                免费预约演示
-              </button>
-              <button className="btn bg-transparent border border-white/30 text-white hover:bg-white/10 px-10 py-4 h-auto rounded-xl font-bold text-lg transition-all hover:-translate-y-1 backdrop-blur-sm">
-                咨询在线客服
-              </button>
+      <CtaSection
+        title="开启智慧餐饮新时代"
+        description={
+          <>
+            立即体验数字化餐饮管理系统，提升门店运营效率。
+            <br className="hidden md:block" />
+            现在注册，即可获得 15 天全功能免费试用。
+            <div className="mt-8 text-sm text-blue-200/80">
+              支持私有化部署 · 7x24小时服务支持
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </>
+        }
+        primaryAction={{ label: "免费预约演示", href: "/contact" }}
+        secondaryAction={{ label: "咨询在线客服", href: "/contact" }}
+      />
     </main>
   );
 }

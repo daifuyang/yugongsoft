@@ -1,27 +1,26 @@
-'use client';
+import * as motion from "framer-motion/client";
 
 import {
   ArrowRight,
   CheckCircle2,
-  BarChart3,
-  GraduationCap,
   Users,
   Calendar,
   CreditCard,
   MessageCircle,
   BookOpen,
-  PieChart,
   FileText,
-  Smartphone,
   Clock,
-  MoreHorizontal
+  MoreHorizontal,
+  User
 } from 'lucide-react';
 
-import { motion } from 'framer-motion';
 import FadeIn from '@/components/FadeIn';
 import NumberTicker from '@/components/NumberTicker';
+import CtaSection from '@/components/ui/CtaSection';
 
-export default function Edu() {
+import FeatureGrid from '@/components/ui/FeatureGrid';
+
+export default function Education() {
   return (
     <main className="bg-white font-sans selection:bg-[#1677FF] selection:text-white">
 
@@ -149,13 +148,6 @@ export default function Edu() {
                   </div>
                 </motion.div>
               </FadeIn>
-
-              {/* Decorative Background */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -z-10 top-12 -right-12 w-full h-full bg-blue-50 rounded-xl opacity-50 scale-95"
-              ></motion.div>
             </div>
           </div>
         </div>
@@ -199,34 +191,32 @@ export default function Edu() {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {[
-              {
-                title: "排课易冲突",
-                desc: "老师、教室、时间资源匹配难，手动排课容易撞车，调整麻烦。",
-                icon: Calendar
-              },
-              {
-                title: "课消统计乱",
-                desc: "学员请假、补课情况多，手工统计课消容易出错，导致财务对账困难。",
-                icon: CreditCard
-              },
-              {
-                title: "家校沟通累",
-                desc: "课后反馈靠微信群发，通知不到位，家长看不到孩子成长，续费难。",
-                icon: MessageCircle
-              }
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                <div className="group bg-[#F8FAFC] hover:bg-white rounded-3xl p-10 border border-slate-100 hover:border-blue-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full">
-                  <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#1677FF] group-hover:scale-110 transition-all mb-8">
-                    <item.icon size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+          <div className="mb-16">
+            <FadeIn direction="up">
+              <FeatureGrid
+                items={[
+                  {
+                    title: "排课易冲突",
+                    desc: "老师、教室、时间资源匹配难，手动排课容易撞车，调整麻烦。",
+                    icon: <Calendar size={32} />
+                  },
+                  {
+                    title: "课消统计乱",
+                    desc: "学员请假、补课情况多，手工统计课消容易出错，导致财务对账困难。",
+                    icon: <CreditCard size={32} />
+                  },
+                  {
+                    title: "家校沟通累",
+                    desc: "课后反馈靠微信群发，通知不到位，家长看不到孩子成长，续费难。",
+                    icon: <MessageCircle size={32} />
+                  }
+                ]}
+                cols={3}
+                animated
+                variant="badge"
+                size="lg"
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -259,53 +249,65 @@ export default function Edu() {
                   <motion.div
                     whileHover={{ y: -5 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="relative bg-white rounded-2xl p-6 shadow-2xl shadow-slate-200/50 border border-white"
+                    className="relative bg-white rounded-2xl p-6 shadow-2xl shadow-slate-200/50 border border-slate-100"
                   >
                     {/* Detailed Calendar Mockup */}
                     <div className="bg-white rounded-xl border border-slate-100 overflow-hidden">
                       <div className="flex border-b border-slate-100">
-                        <div className="w-16 py-3 bg-slate-50 text-center text-xs font-medium text-slate-500 border-r border-slate-100">时间</div>
+                        <div className="w-14 py-3 bg-slate-50 text-center text-xs font-medium text-slate-500 border-r border-slate-100">时间</div>
                         <div className="flex-1 grid grid-cols-3">
-                          <div className="py-3 text-center text-xs font-bold text-slate-700 border-r border-slate-100">周一</div>
-                          <div className="py-3 text-center text-xs font-bold text-[#1677FF] bg-blue-50/50 border-r border-slate-100">周二</div>
-                          <div className="py-3 text-center text-xs font-bold text-slate-700">周三</div>
+                          <div className="py-3 text-center text-xs font-bold text-slate-600 border-r border-slate-100 bg-slate-50/50">周一</div>
+                          <div className="py-3 text-center text-xs font-bold text-[#1677FF] bg-blue-50/30 border-r border-slate-100">周二</div>
+                          <div className="py-3 text-center text-xs font-bold text-slate-600 bg-slate-50/50">周三</div>
                         </div>
                       </div>
                       <div className="flex">
-                        <div className="w-16 border-r border-slate-100">
+                        <div className="w-14 border-r border-slate-100 bg-slate-50/30">
                           {[9, 10, 11, 12, 13, 14].map(h => (
-                            <div key={h} className="h-16 flex items-center justify-center text-xs text-slate-400 border-b border-slate-50 last:border-0">
+                            <div key={h} className="h-20 flex items-start justify-center pt-2 text-[10px] font-medium text-slate-400 border-b border-slate-100 last:border-0">
                               {h}:00
                             </div>
                           ))}
                         </div>
-                        <div className="flex-1 grid grid-cols-3 relative bg-[linear-gradient(to_bottom,#f8fafc_1px,transparent_1px)] bg-[size:100%_4rem]">
+                        <div className="flex-1 grid grid-cols-3 relative bg-[linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:100%_5rem]">
                           {/* Class Block 1 */}
-                          <div className="absolute top-4 left-2 right-2 h-24 bg-blue-100 border-l-4 border-blue-500 rounded p-2 text-xs shadow-sm">
-                            <div className="font-bold text-blue-800">少儿编程 L1</div>
-                            <div className="text-blue-600 mt-1">A201 教室</div>
+                          <div className="absolute top-4 left-2 right-2 h-32 bg-blue-50 border-l-4 border-blue-500 rounded-r-md p-2 text-xs hover:shadow-md transition-shadow cursor-pointer">
+                            <div className="font-bold text-blue-900 mb-1">少儿编程 L1</div>
+                            <div className="text-blue-600 text-[10px] flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                                A201 教室
+                            </div>
+                            <div className="mt-2 flex -space-x-1.5">
+                                <div className="w-5 h-5 rounded-full bg-blue-200 border border-white text-[8px] flex items-center justify-center text-blue-600">张</div>
+                                <div className="w-5 h-5 rounded-full bg-blue-200 border border-white text-[8px] flex items-center justify-center text-blue-600">王</div>
+                            </div>
                           </div>
 
-                          {/* Class Block 2 (Conflict) */}
-                          <div className="absolute top-36 left-[34%] right-[34%] h-24 bg-red-50 border-l-4 border-red-500 rounded p-2 text-xs shadow-sm ring-2 ring-red-100 z-10">
-                            <div className="flex items-center gap-1 font-bold text-red-800">
-                              <span>冲突警报</span>
+                          {/* Class Block 2 (Conflict) - Now integrated in the table */}
+                          <div className="absolute top-44 left-[34%] right-[34%] h-32 bg-red-50/80 border-l-4 border-red-500 rounded-r-md p-2 text-xs shadow-sm ring-1 ring-red-100 z-10 bg-[linear-gradient(45deg,#fee2e2_25%,#fef2f2_25%,#fef2f2_50%,#fee2e2_50%,#fee2e2_75%,#fef2f2_75%,#fef2f2_100%)] bg-[size:10px_10px]">
+                            <div className="flex items-center gap-1 font-bold text-red-700 mb-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                              冲突警报
                             </div>
-                            <div className="text-red-600 mt-1">教室已被占用</div>
+                            <div className="text-red-600 text-[10px]">教室已被占用</div>
+                            <div className="mt-2 text-[10px] text-red-500 font-medium bg-white/50 rounded px-1 py-0.5 inline-block border border-red-100">
+                                建议更换: B102
+                            </div>
                           </div>
 
                           {/* Class Block 3 */}
-                          <div className="absolute top-48 left-[67%] right-2 h-24 bg-green-100 border-l-4 border-green-500 rounded p-2 text-xs shadow-sm">
-                            <div className="font-bold text-green-800">乐高机器人</div>
-                            <div className="text-green-600 mt-1">B103 教室</div>
+                          <div className="absolute top-60 left-[67%] right-2 h-32 bg-green-50 border-l-4 border-green-500 rounded-r-md p-2 text-xs hover:shadow-md transition-shadow cursor-pointer">
+                            <div className="font-bold text-green-900 mb-1">乐高机器人</div>
+                            <div className="text-green-600 text-[10px] flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                B103 教室
+                            </div>
+                             <div className="mt-2 flex -space-x-1.5">
+                                <div className="w-5 h-5 rounded-full bg-green-200 border border-white text-[8px] flex items-center justify-center text-green-600">李</div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    {/* Floating Tooltip */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800 text-white px-4 py-2 rounded-lg shadow-xl text-sm font-medium z-20 flex items-center gap-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                      检测到资源冲突
                     </div>
                   </motion.div>
                 </div>
@@ -339,59 +341,89 @@ export default function Edu() {
                     className="relative bg-white rounded-2xl p-8 shadow-2xl shadow-slate-200/50 border border-white"
                   >
                     {/* Student CRM Board Mockup */}
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-3 bg-slate-50/50 p-1 rounded-xl">
                       {/* Column 1: Leads */}
-                      <div className="bg-slate-50 rounded-xl p-3 flex flex-col gap-3 h-full">
-                        <div className="flex justify-between items-center pb-2 border-b border-slate-100">
-                          <span className="font-bold text-slate-700 text-sm">新线索</span>
-                          <span className="bg-slate-200 text-slate-600 px-1.5 rounded text-xs">3</span>
+                      <div className="flex flex-col gap-2 h-full">
+                        <div className="flex justify-between items-center px-2 py-1.5">
+                          <span className="font-bold text-slate-700 text-xs flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-orange-400"></span>
+                            新线索
+                          </span>
+                          <span className="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px] font-medium border border-slate-200">3</span>
                         </div>
-                        {[1, 2, 3].map(i => (
-                          <div key={i} className="bg-white p-3 rounded-lg shadow-sm border border-slate-100">
-                            <div className="flex items-center gap-2 mb-2">
-                              <div className="w-6 h-6 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold">李</div>
-                              <span className="text-sm font-bold text-slate-800">李子涵妈妈</span>
+                        <div className="space-y-2">
+                          {[
+                            { name: "王女士", tag: "咨询Python", time: "10分钟前", avatar: "王", color: "bg-orange-100 text-orange-600" },
+                            { name: "张先生", tag: "咨询乐高", time: "2小时前", avatar: "张", color: "bg-blue-100 text-blue-600" },
+                            { name: "陈女士", tag: "少儿绘画", time: "昨天", avatar: "陈", color: "bg-purple-100 text-purple-600" }
+                          ].map((item, i) => (
+                            <div key={i} className="bg-white p-2.5 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow cursor-pointer group">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-[10px] font-bold`}>{item.avatar}</div>
+                                <span className="text-xs font-bold text-slate-700 group-hover:text-[#1677FF] transition-colors">{item.name}</span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-[10px] text-slate-500 bg-slate-50 px-1.5 py-0.5 rounded border border-slate-100">{item.tag}</span>
+                                <span className="text-[10px] text-slate-300">{item.time}</span>
+                              </div>
                             </div>
-                            <div className="text-xs text-slate-500">咨询少儿编程...</div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
                       </div>
 
                       {/* Column 2: Follow Up */}
-                      <div className="bg-blue-50 rounded-xl p-3 flex flex-col gap-3 h-full">
-                        <div className="flex justify-between items-center pb-2 border-b border-blue-100">
-                          <span className="font-bold text-blue-800 text-sm">跟进中</span>
-                          <span className="bg-blue-200 text-blue-700 px-1.5 rounded text-xs">2</span>
+                      <div className="flex flex-col gap-2 h-full">
+                        <div className="flex justify-between items-center px-2 py-1.5">
+                          <span className="font-bold text-slate-700 text-xs flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                            跟进中
+                          </span>
+                          <span className="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px] font-medium border border-slate-200">2</span>
                         </div>
-                        <div className="bg-white p-3 rounded-lg shadow-sm border border-blue-100 ring-2 ring-blue-200">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">王</div>
-                            <span className="text-sm font-bold text-slate-800">王小明</span>
-                          </div>
-                          <div className="text-xs text-slate-500">已预约周六试听</div>
-                        </div>
-                        <div className="bg-white p-3 rounded-lg shadow-sm border border-blue-100 ring-2 ring-blue-200">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xs font-bold">王</div>
-                            <span className="text-sm font-bold text-slate-800">王小明</span>
-                          </div>
-                          <div className="text-xs text-slate-500">已预约周六试听</div>
+                        <div className="space-y-2">
+                            <div className="bg-white p-2.5 rounded-lg shadow-sm border border-blue-200 ring-1 ring-blue-50 cursor-pointer relative overflow-hidden">
+                              <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-blue-500/10 to-transparent rounded-bl-xl"></div>
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-bold">刘</div>
+                                <span className="text-xs font-bold text-slate-800">刘浩宇</span>
+                              </div>
+                              <div className="text-[10px] text-slate-500 mb-1.5">已预约试听: 周六 10:00</div>
+                              <div className="w-full bg-slate-100 h-1 rounded-full overflow-hidden">
+                                <div className="bg-blue-500 h-full w-2/3"></div>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-white p-2.5 rounded-lg shadow-sm border border-slate-100 hover:shadow-md transition-shadow cursor-pointer">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-[10px] font-bold">赵</div>
+                                <span className="text-xs font-bold text-slate-800">赵雅</span>
+                              </div>
+                              <div className="text-[10px] text-slate-500">意向强烈，待签约</div>
+                            </div>
                         </div>
                       </div>
 
                       {/* Column 3: Enrolled */}
-                      <div className="bg-green-50 rounded-xl p-3 flex flex-col gap-3 h-full">
-                        <div className="flex justify-between items-center pb-2 border-b border-green-100">
-                          <span className="font-bold text-green-800 text-sm">已报名</span>
-                          <span className="bg-green-200 text-green-700 px-1.5 rounded text-xs">1</span>
+                      <div className="flex flex-col gap-2 h-full">
+                        <div className="flex justify-between items-center px-2 py-1.5">
+                          <span className="font-bold text-slate-700 text-xs flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                            已报名
+                          </span>
+                          <span className="bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded text-[10px] font-medium border border-slate-200">1</span>
                         </div>
-                        <div className="bg-white p-3 rounded-lg shadow-sm border border-green-100 opacity-60">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-xs font-bold">张</div>
-                            <span className="text-sm font-bold text-slate-800">张伟</span>
-                          </div>
-                          <div className="text-xs text-slate-500">已缴费 ￥3999</div>
-                        </div>
+                         <div className="space-y-2">
+                            <div className="bg-white p-2.5 rounded-lg shadow-sm border-l-2 border-l-green-500 border-y border-r border-slate-100 opacity-80 hover:opacity-100 transition-opacity cursor-pointer">
+                              <div className="flex items-center gap-2 mb-2">
+                                <div className="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">孙</div>
+                                <span className="text-xs font-bold text-slate-800">孙一鸣</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <div className="text-[10px] text-slate-500">已缴费</div>
+                                <div className="text-[10px] font-bold text-green-600">￥3999</div>
+                              </div>
+                            </div>
+                         </div>
                       </div>
                     </div>
                   </motion.div>
@@ -420,66 +452,105 @@ export default function Edu() {
                   </ul>
                 </div>
                 <div className="lg:w-1/2">
-                  {/* Mobile Mockup */}
-                  <div className="relative mx-auto w-[280px] bg-white rounded-[2.5rem] shadow-[0_30px_60px_-12px_rgba(0,0,0,0.12)] border-[8px] border-slate-50 ring-1 ring-slate-200/50">
-                    {/* Notch */}
-                    <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-slate-100 rounded-full z-20"></div>
-
-                    <div className="bg-[#F5F7FA] w-full h-[500px] rounded-[2rem] overflow-hidden relative flex flex-col">
-                      {/* Header */}
-                      <div className="bg-white px-4 pt-12 pb-2 shadow-sm z-10">
-                        <div className="text-lg font-bold text-center">我的孩子</div>
-                      </div>
-
-                      {/* Body */}
-                      <div className="flex-1 h-0 px-2 py-4">
-                        <div className='h-full rounded-2xl overflow-hidden space-y-4'>
-                          {/* Student Card */}
-                          <div className="bg-gradient-to-r from-[#1677FF] to-blue-500 rounded-2xl p-4 text-white shadow-lg shadow-blue-500/30">
-                            <div className="flex items-center gap-3">
-                              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold border border-white/30">
-                                乐
-                              </div>
-                              <div>
-                                <div className="font-bold">乐乐小朋友</div>
-                                <div className="text-xs text-blue-100 opacity-90">剩余课时: 24节</div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Actions Grid */}
-                          <div className="grid grid-cols-4 gap-2 bg-white p-4 rounded-xl shadow-sm">
-                            {[
-                              { label: "课程表", icon: Calendar, color: "text-blue-500", bg: "bg-blue-50" },
-                              { label: "课后点评", icon: MessageCircle, color: "text-green-500", bg: "bg-green-50" },
-                              { label: "请假", icon: Clock, color: "text-orange-500", bg: "bg-orange-50" },
-                              { label: "更多", icon: MoreHorizontal, color: "text-slate-500", bg: "bg-slate-50" },
-                            ].map((item, i) => (
-                              <div key={i} className="flex flex-col items-center gap-1.5">
-                                <div className={`w-10 h-10 rounded-full ${item.bg} ${item.color} flex items-center justify-center`}>
-                                  <item.icon size={18} />
+                  {/* Mobile Mockup - iPhone 14 Pro Style */}
+                  <div className="relative mx-auto w-[280px] h-[580px] bg-slate-900 rounded-[3rem] shadow-[0_50px_100px_-20px_rgba(50,50,93,0.25),0_30px_60px_-30px_rgba(0,0,0,0.3)] border-[6px] border-slate-900 ring-4 ring-slate-800 overflow-hidden">
+                    {/* Dynamic Island */}
+                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-full z-30 flex items-center justify-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-slate-800/50"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-slate-800/50"></div>
+                    </div>
+                    
+                    {/* Screen Content */}
+                    <div className="w-full h-full bg-[#F5F7FA] overflow-hidden relative flex flex-col pt-10">
+                       {/* Status Bar Mock */}
+                       <div className="absolute top-3 left-6 right-6 flex justify-between text-[10px] font-medium text-white z-40">
+                          <span>9:41</span>
+                          <div className="flex gap-1">
+                             <div className="w-3 h-3">
+                                <div className="w-full h-full border border-white/50 rounded-sm relative">
+                                    <div className="absolute inset-0.5 bg-white rounded-[1px]"></div>
                                 </div>
-                                <span className="text-[10px] text-slate-600">{item.label}</span>
-                              </div>
-                            ))}
+                             </div>
                           </div>
+                       </div>
 
-                          {/* Notification Card */}
-                          <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100 mb-2 overflow-hidden">
-                            <div className="flex justify-between items-center mb-3">
-                              <div className="text-sm font-bold text-slate-800">最新点评</div>
-                              <div className="text-[10px] text-slate-400">10:30</div>
+                       {/* App Header */}
+                       <div className="px-5 pb-4 flex items-center justify-between bg-white pt-2">
+                           <div className="text-lg font-bold text-slate-900">我的孩子</div>
+                           <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center text-xs text-slate-400">
+                              <User size={20} />
+                           </div>
+                       </div>
+
+                       {/* Scrollable Body */}
+                       <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-4 no-scrollbar">
+                           {/* Student Card */}
+                           <div className="bg-gradient-to-br from-[#1677FF] to-[#0050b3] rounded-2xl p-5 text-white shadow-lg shadow-blue-500/20 relative overflow-hidden group cursor-pointer">
+                               {/* Decorative circles */}
+                               <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors"></div>
+                               
+                               <div className="flex items-center gap-4 relative z-10">
+                                   <div className="w-12 h-12 rounded-full bg-white/20 border-2 border-white/30 flex items-center justify-center text-lg font-bold backdrop-blur-sm shadow-inner">
+                                     乐
+                                   </div>
+                                   <div>
+                                     <div className="text-lg font-bold">乐乐小朋友</div>
+                                     <div className="text-xs text-blue-100/90 mt-1 flex items-center gap-1">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></div>
+                                        剩余课时: 24 节
+                                     </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           {/* Grid Menu */}
+                           <div className="grid grid-cols-4 gap-2">
+                              {[
+                                  { label: "课程表", icon: Calendar, color: "text-blue-500", bg: "bg-blue-50" },
+                                  { label: "课后点评", icon: MessageCircle, color: "text-green-500", bg: "bg-green-50" },
+                                  { label: "在线请假", icon: Clock, color: "text-orange-500", bg: "bg-orange-50" },
+                                  { label: "更多服务", icon: MoreHorizontal, color: "text-slate-500", bg: "bg-slate-50" },
+                              ].map((item, i) => (
+                                  <div key={i} className="flex flex-col items-center gap-2 cursor-pointer group">
+                                      <div className={`w-12 h-12 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform`}>
+                                          <item.icon size={20} />
+                                      </div>
+                                      <span className="text-[10px] font-medium text-slate-600">{item.label}</span>
+                                  </div>
+                              ))}
+                           </div>
+
+                           {/* Notification / Feed */}
+                           <div className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100/50">
+                               <div className="flex justify-between items-center mb-3">
+                                   <h4 className="font-bold text-slate-800 text-sm">最新动态</h4>
+                                   <span className="text-[10px] text-slate-400">10:30</span>
+                               </div>
+                               <div className="flex gap-3">
+                                   <div className="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center shrink-0 border border-green-200">
+                                       <MessageCircle size={14} />
+                                   </div>
+                                   <div>
+                                       <div className="text-xs text-slate-600 leading-relaxed mb-2">
+                                          <span className="font-bold text-slate-800">李老师</span> 发布了课堂点评：乐乐今天在编程课上表现很棒，逻辑思维很清晰！👍
+                                       </div>
+                                       <div className="flex gap-2">
+                                           <div className="w-12 h-12 bg-slate-100 rounded-lg border border-slate-200"></div>
+                                           <div className="w-12 h-12 bg-slate-100 rounded-lg border border-slate-200"></div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       {/* Bottom Tab Bar Mock */}
+                       <div className="h-14 bg-white border-t border-slate-100 flex items-center justify-around px-4 pb-2">
+                            {[1,2,3].map((i) => (
+                                <div key={i} className="flex flex-col items-center gap-1 text-slate-400 cursor-pointer">
+                                <div className="w-5 h-5 border-[1.5px] border-current rounded-md"></div>
                             </div>
-                            <p className="text-xs text-slate-600 leading-relaxed bg-slate-50 p-3 rounded-lg">
-                              乐乐今天在编程课上表现很棒，能够独立完成循环结构的编写，逻辑思维很清晰！👍
-                            </p>
-                            <div className="mt-3 flex gap-2">
-                              <div className="w-16 h-12 bg-slate-100 rounded-lg"></div>
-                              <div className="w-16 h-12 bg-slate-100 rounded-lg"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                            ))}
+                       </div>
                     </div>
                   </div>
                 </div>
@@ -491,32 +562,21 @@ export default function Edu() {
       </section>
 
       {/* --- CTA Section --- */}
-      <section className="py-32 bg-[#1677FF] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid.svg')] bg-repeat"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn direction="up">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
-              打造一流的教培机构
-            </h2>
-            <p className="text-blue-100 text-xl mb-12 max-w-2xl mx-auto">
-              已有 5000+ 机构选择我们，实现数字化转型。
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <button className="btn bg-white text-[#1677FF] hover:bg-blue-50 px-12 py-5 h-auto rounded-xl font-bold text-xl shadow-xl transition-all border-none">
-                免费预约演示
-              </button>
-              <button className="btn bg-transparent border border-white/30 text-white hover:bg-white/10 px-12 py-5 h-auto rounded-xl font-bold text-xl transition-all">
-                咨询在线客服
-              </button>
+      <CtaSection
+        title="开启智慧教育新篇章"
+        description={
+          <>
+            立即体验数字化教务管理系统，提升教学质量与管理效率。
+            <br className="hidden md:block" />
+            现在注册，即可获得 15 天全功能免费试用。
+            <div className="mt-8 text-sm text-blue-200/80">
+              支持私有化部署 · 7x24小时服务支持
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </>
+        }
+        primaryAction={{ label: "免费预约演示", href: "/contact" }}
+        secondaryAction={{ label: "咨询在线客服", href: "/contact" }}
+      />
     </main>
   );
 }

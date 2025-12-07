@@ -1,3 +1,4 @@
+import * as motion from "framer-motion/client";
 import {
   ArrowRight,
   CheckCircle2,
@@ -20,6 +21,8 @@ import {
 
 import FadeIn from '@/components/FadeIn';
 import NumberTicker from '@/components/NumberTicker';
+import CtaSection from '@/components/ui/CtaSection';
+import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function SupplyChain() {
   return (
@@ -75,7 +78,11 @@ export default function SupplyChain() {
             </div>
 
             {/* Right: Dashboard Mockup */}
-            <div className="lg:w-1/2 relative">
+            <motion.div
+              className="lg:w-1/2 relative"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
               <FadeIn delay={0.2} direction="left" duration={0.8}>
                 <div className="relative w-full bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden">
                   <div className="h-10 border-b border-slate-100 bg-slate-50/80 flex items-center px-4 gap-2">
@@ -144,7 +151,7 @@ export default function SupplyChain() {
               
                {/* Decorative Background */}
               <div className="absolute -z-10 top-10 -right-10 w-full h-full bg-blue-50 rounded-xl opacity-50 scale-95"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -187,34 +194,32 @@ export default function SupplyChain() {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "库存积压/缺货",
-                desc: "库存数据不准，热销品缺货导致客户流失，滞销品积压占用大量资金。",
-                icon: Package
-              },
-              {
-                title: "账实不符",
-                desc: "手工记账容易出错，仓库实物与系统账面数据对不上，每次盘点都是糊涂账。",
-                icon: FileText
-              },
-              {
-                title: "利润核算难",
-                desc: "采购成本波动大，费用分摊复杂，老板不知道每笔订单、每个商品到底赚了多少钱。",
-                icon: CreditCard
-              }
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                <div className="group bg-[#F8FAFC] hover:bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full">
-                  <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#1677FF] group-hover:scale-110 transition-all mb-6">
-                    <item.icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+          <div className="mb-16">
+            <FadeIn direction="up">
+              <FeatureGrid
+                items={[
+                  {
+                    title: "库存积压/缺货",
+                    desc: "库存数据不准，热销品缺货导致客户流失，滞销品积压占用大量资金。",
+                    icon: <Package size={28} />
+                  },
+                  {
+                    title: "账实不符",
+                    desc: "手工记账容易出错，仓库实物与系统账面数据对不上，每次盘点都是糊涂账。",
+                    icon: <FileText size={28} />
+                  },
+                  {
+                    title: "利润核算难",
+                    desc: "采购成本波动大，费用分摊复杂，老板不知道每笔订单、每个商品到底赚了多少钱。",
+                    icon: <CreditCard size={28} />
+                  }
+                ]}
+                cols={3}
+                animated
+                variant="badge"
+                size="lg"
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -451,32 +456,21 @@ export default function SupplyChain() {
       </section>
 
       {/* --- CTA Section --- */}
-      <section className="py-24 bg-[#1677FF] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid.svg')] bg-repeat"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn direction="up">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              提升供应链竞争力
-            </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-              已有 3000+ 贸易企业选择我们，实现降本增效。
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="btn bg-white text-[#1677FF] hover:bg-blue-50 px-10 py-4 h-auto rounded-xl font-bold text-lg shadow-xl transition-all border-none">
-                免费预约演示
-              </button>
-              <button className="btn bg-transparent border border-white/30 text-white hover:bg-white/10 px-10 py-4 h-auto rounded-xl font-bold text-lg transition-all">
-                咨询在线客服
-              </button>
+      <CtaSection
+        title="开启供应链协同新时代"
+        description={
+          <>
+            立即体验数字化供应链管理系统，提升协同效率。
+            <br className="hidden md:block" />
+            现在注册，即可获得 15 天全功能免费试用。
+            <div className="mt-8 text-sm text-blue-200/80">
+              支持私有化部署 · 7x24小时服务支持
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </>
+        }
+        primaryAction={{ label: "免费预约演示", href: "/contact" }}
+        secondaryAction={{ label: "咨询在线客服", href: "/contact" }}
+      />
     </main>
   );
 }

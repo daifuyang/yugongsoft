@@ -1,4 +1,5 @@
 import FloatingWidget from "@/components/FloatingWidget";
+import type { Metadata } from "next";
 
 // 引入拆分后的组件
 import Hero from "@/components/Home/Hero";
@@ -38,3 +39,21 @@ export default function Home() {
     </main>
   );
 }
+export const metadata: Metadata = {
+  title: "愚公软件 | 中小企业数字化落地",
+  description:
+    "提供 CRM、MES、电商小程序等高性价比解决方案，最快 3 天上线，助力业务增长。",
+  keywords: [
+    "中小企业数字化",
+    "CRM",
+    "MES",
+    "电商小程序",
+    "定制开发",
+    "愚公软件",
+  ],
+  openGraph: {
+    title: "愚公软件 | 中小企业数字化落地",
+    description:
+      "提供 CRM、MES、电商小程序等高性价比解决方案，最快 3 天上线，助力业务增长。",
+  },
+};

@@ -1,4 +1,4 @@
-'use client';
+import * as motion from "framer-motion/client";
 
 import {
   ArrowRight,
@@ -17,9 +17,11 @@ import {
   Clock
 } from 'lucide-react';
 
-import { motion } from 'framer-motion';
 import FadeIn from '@/components/FadeIn';
 import NumberTicker from '@/components/NumberTicker';
+import PhoneMockup from '@/components/ui/PhoneMockup';
+import CtaSection from '@/components/ui/CtaSection';
+import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function CRM() {
   return (
@@ -279,34 +281,31 @@ export default function CRM() {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "客户资产流失",
-                desc: "客户资料分散在销售个人手机里，人员离职带走客户，公司资产流失严重。",
-                icon: Users
-              },
-              {
-                title: "销售过程黑盒",
-                desc: "老板无法掌握销售每天在干什么，见没见客户，聊了什么，业绩预测全靠猜。",
-                icon: Filter
-              },
-              {
-                title: "内部撞单内耗",
-                desc: "缺乏统一的报备机制，内部销售抢单严重，不仅影响团结，更损害客户体验。",
-                icon: Layers
-              }
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                <div className="group bg-[#F8FAFC] hover:bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full">
-                  <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#1677FF] group-hover:scale-110 transition-all mb-6">
-                    <item.icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+          <div className="mb-16">
+             <FadeIn direction="up">
+               <FeatureGrid 
+                 items={[
+                   {
+                     title: "客户资产流失",
+                     desc: "客户资料分散在销售个人手机里，人员离职带走客户，公司资产流失严重。",
+                     icon: <Users size={28} />
+                   },
+                   {
+                     title: "销售过程黑盒",
+                     desc: "老板无法掌握销售每天在干什么，见没见客户，聊了什么，业绩预测全靠猜。",
+                     icon: <Filter size={28} />
+                   },
+                   {
+                     title: "内部撞单内耗",
+                     desc: "缺乏统一的报备机制，内部销售抢单严重，不仅影响团结，更损害客户体验。",
+                     icon: <Layers size={28} />
+                   }
+                 ]}
+                 cols={3}
+                 animated
+                 variant="badge"
+               />
+             </FadeIn>
           </div>
         </div>
       </section>
@@ -379,23 +378,14 @@ export default function CRM() {
                             </div>
                           </div>
                           <div className={`text-xs px-2 py-1 rounded border ${lead.tag === "即将回收"
-                              ? "bg-red-50 text-red-600 border-red-100"
-                              : "bg-blue-50 text-blue-600 border-blue-100"
+                            ? "bg-red-50 text-red-600 border-red-100"
+                            : "bg-blue-50 text-blue-600 border-blue-100"
                             }`}>
                             {lead.tag}
                           </div>
                         </div>
                       ))}
                     </div>
-
-                    {/* Floating Alert */}
-                    <div className="absolute bottom-6 right-6 bg-slate-900 text-white text-xs px-3 py-2 rounded-lg shadow-xl flex items-center gap-2 animate-bounce">
-                      <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                      3 条线索即将被强制回收
-                    </div>
-
-                    {/* Decorative Elements */}
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl -z-10"></div>
                   </div>
                 </div>
               </div>
@@ -490,71 +480,61 @@ export default function CRM() {
                   </ul>
                 </div>
                 <div className="lg:w-1/2 flex justify-center">
-                  <div className="relative w-[280px] h-[560px] bg-slate-900 rounded-[3rem] shadow-2xl shadow-slate-400/50 border-[8px] border-slate-900 overflow-hidden">
-                    {/* 模拟手机屏幕 */}
-                    <div className="w-full h-full bg-slate-50 overflow-hidden relative flex flex-col">
-                      {/* Status Bar */}
-                      <div className="h-8 bg-white flex justify-between items-center px-6 text-[10px] font-bold text-slate-800 z-20">
-                        <span>9:41</span>
-                        <div className="flex gap-1">
-                          <div className="w-3 h-3 bg-slate-800 rounded-full opacity-20"></div>
-                          <div className="w-3 h-3 bg-slate-800 rounded-full opacity-20"></div>
-                          <div className="w-3 h-3 bg-slate-800 rounded-full"></div>
-                        </div>
-                      </div>
+                  <PhoneMockup className="scale-90 sm:scale-100">
+                    {/* App Header */}
+                    <div className="bg-white px-4 py-3 border-b border-slate-100 flex justify-between items-center z-10 shadow-sm relative">
+                      <div className="w-6 h-6 rounded bg-slate-100"></div>
+                      <span className="font-bold text-slate-800">外勤签到</span>
+                      <div className="w-6 h-6 rounded bg-blue-50 text-blue-500 flex items-center justify-center text-xs">+</div>
+                    </div>
 
-                      {/* App Header */}
-                      <div className="bg-white px-4 py-3 border-b border-slate-100 flex justify-between items-center z-20">
-                        <div className="w-6 h-6 rounded bg-slate-100"></div>
-                        <span className="font-bold text-slate-800">外勤签到</span>
-                        <div className="w-6 h-6 rounded bg-blue-50 text-blue-500 flex items-center justify-center text-xs">+</div>
-                      </div>
-
-                      {/* Map Area (Abstract) */}
-                      <div className="h-48 bg-slate-200 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-[url('/images/grid.svg')] opacity-20"></div>
-                        {/* Map Pins */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-blue-500/10 rounded-full animate-ping"></div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg z-10"></div>
-                        <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur p-3 rounded-xl shadow-sm text-xs">
-                          <div className="font-bold text-slate-800">当前位置</div>
-                          <div className="text-slate-500 truncate">上海市浦东新区张江高科园区...</div>
-                        </div>
-                      </div>
-
-                      {/* Visit List */}
-                      <div className="flex-1 bg-white p-4 space-y-4 overflow-y-auto">
-                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Today</div>
-                        {[
-                          { time: "09:30", title: "拜访：科技大厦A座", status: "已完成", color: "text-green-500 bg-green-50" },
-                          { time: "14:00", title: "客户会议：张经理", status: "进行中", color: "text-blue-500 bg-blue-50" },
-                          { time: "16:30", title: "产品演示：华东区", status: "计划中", color: "text-slate-500 bg-slate-100" },
-                        ].map((item, i) => (
-                          <div key={i} className="flex gap-3 relative">
-                            {/* Timeline Line */}
-                            {i < 2 && <div className="absolute left-[19px] top-8 bottom-[-20px] w-0.5 bg-slate-100"></div>}
-
-                            <div className="mt-1 w-10 text-xs font-bold text-slate-400 text-right">{item.time}</div>
-                            <div className="relative z-10 w-3 h-3 mt-1.5 rounded-full border-2 border-white bg-slate-300 shadow-sm ring-1 ring-slate-100"></div>
-                            <div className="flex-1 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                              <div className="text-xs font-bold text-slate-800 mb-1">{item.title}</div>
-                              <div className={`inline-flex px-1.5 py-0.5 rounded text-[10px] font-bold ${item.color}`}>
-                                {item.status}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Bottom Nav */}
-                      <div className="bg-white border-t border-slate-100 p-4 pb-6 flex justify-between items-center px-8">
-                        <div className="w-6 h-6 rounded-full bg-blue-500"></div>
-                        <div className="w-6 h-6 rounded-full bg-slate-200"></div>
-                        <div className="w-6 h-6 rounded-full bg-slate-200"></div>
-                        <div className="w-6 h-6 rounded-full bg-slate-200"></div>
+                    {/* Map Area (Abstract) */}
+                    <div className="h-48 bg-slate-100 relative overflow-hidden group">
+                       {/* Grid Pattern */}
+                       <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:1rem_1rem]"></div>
+                       
+                      {/* Map Pins */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-blue-500/10 rounded-full animate-ping"></div>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg z-10"></div>
+                      
+                      <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-sm text-xs border border-white/50">
+                        <div className="font-bold text-slate-800">当前位置</div>
+                        <div className="text-slate-500 truncate">上海市浦东新区张江高科园区...</div>
                       </div>
                     </div>
-                  </div>
+
+                    {/* Visit List */}
+                    <div className="flex-1 bg-white p-4 space-y-4 overflow-y-hidden">
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">Today</div>
+                      {[
+                        { time: "09:30", title: "拜访：科技大厦A座", status: "已完成", color: "text-green-600 bg-green-50 border-green-100" },
+                        { time: "14:00", title: "客户会议：张经理", status: "进行中", color: "text-blue-600 bg-blue-50 border-blue-100" },
+                        { time: "16:30", title: "产品演示：华东区", status: "计划中", color: "text-slate-500 bg-slate-50 border-slate-200" },
+                      ].map((item, i) => (
+                        <div key={i} className="flex gap-3 relative">
+                          {/* Timeline Line */}
+                          {i < 2 && <div className="absolute left-[19px] top-8 bottom-[-20px] w-0.5 bg-slate-100"></div>}
+
+                          <div className="mt-1 w-10 text-xs font-bold text-slate-400 text-right">{item.time}</div>
+                          <div className="relative z-10 w-3 h-3 mt-1.5 rounded-full border-2 border-white bg-slate-300 shadow-sm ring-1 ring-slate-100"></div>
+                          <div className="flex-1 bg-white p-3 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div className="text-xs font-bold text-slate-800 mb-1">{item.title}</div>
+                            <div className={`inline-flex px-2 py-0.5 rounded text-[10px] font-bold border ${item.color}`}>
+                              {item.status}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom Nav */}
+                    <div className="bg-white border-t border-slate-100 p-4 pb-6 flex justify-between items-center px-8 shrink-0 relative z-10">
+                      <div className="w-6 h-6 rounded-full bg-blue-500 shadow-lg shadow-blue-500/30"></div>
+                      <div className="w-6 h-6 rounded-full bg-slate-100"></div>
+                      <div className="w-6 h-6 rounded-full bg-slate-100"></div>
+                      <div className="w-6 h-6 rounded-full bg-slate-100"></div>
+                    </div>
+                  </PhoneMockup>
                 </div>
               </div>
             </FadeIn>
@@ -563,38 +543,21 @@ export default function CRM() {
       </section>
 
       {/* --- CTA Section: 底部号召 --- */}
-      <section className="py-24 bg-[#1677FF] relative overflow-hidden">
-        {/* 背景纹理 */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid.svg')] bg-repeat"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn direction="up">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              准备好让业绩翻倍了吗？
-            </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-              加入 2000+ 优秀企业的行列，体验数字化销售管理的魅力。
-              <br className="hidden md:block" />
-              现在注册，即可获得 15 天全功能免费试用。
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="btn bg-white text-[#1677FF] hover:bg-blue-50 px-10 py-4 h-auto rounded-xl font-bold text-lg shadow-xl transition-all border-none">
-                免费预约演示
-              </button>
-              <button className="btn bg-transparent border border-white/30 text-white hover:bg-white/10 px-10 py-4 h-auto rounded-xl font-bold text-lg transition-all">
-                咨询在线客服
-              </button>
-            </div>
+      <CtaSection
+        title="准备好让业绩翻倍了吗？"
+        description={
+          <>
+            加入 2000+ 优秀企业的行列，体验数字化销售管理的魅力。
+            <br className="hidden md:block" />
+            现在注册，即可获得 15 天全功能免费试用。
             <div className="mt-8 text-sm text-blue-200/80">
-              无需信用卡 · 支持私有化部署 · 7x24小时服务支持
+              支持私有化部署 · 7x24小时服务支持
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </>
+        }
+        primaryAction={{ label: "免费预约演示", href: "/contact" }}
+        secondaryAction={{ label: "咨询在线客服", href: "/contact" }}
+      />
     </main>
   );
 }

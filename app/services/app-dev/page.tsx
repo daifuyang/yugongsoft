@@ -1,25 +1,23 @@
+import * as motion from "framer-motion/client";
 import {
     ArrowRight,
-    CheckCircle2,
     Smartphone,
     Layout,
-    Globe,
     Zap,
     ShieldCheck,
     Code2,
     Layers,
     Cpu,
-    GitBranch,
-    Rocket,
-    Bug,
-    Fingerprint,
     CreditCard,
-    BarChart3,
     Bell,
     Server,
     FileCode
 } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
+import FeatureGrid from '@/components/ui/FeatureGrid';
+import ProcessGrid from '@/components/ui/ProcessGrid';
+import PhoneMockup from '@/components/ui/PhoneMockup';
+import CtaSection from '@/components/ui/CtaSection';
 
 export default function AppDev() {
     return (
@@ -91,134 +89,92 @@ export default function AppDev() {
                         </div>
 
                         {/* Right: Visualization (Modern App Mockup) */}
-                        <div className="lg:w-1/2 relative flex justify-center lg:justify-end">
+                        <motion.div
+                            className="lg:w-1/2 relative flex justify-center lg:justify-end"
+                            animate={{ y: [0, -20, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        >
                             <FadeIn delay={0.2} direction="left" duration={0.8} className="w-full max-w-[500px]">
                                 <div className="relative">
-                                    {/* Phone Frame */}
-                                    <div className="relative mx-auto border-slate-900 bg-slate-900 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl shadow-slate-300 z-10 overflow-hidden ring-1 ring-slate-900/5">
-                                        <div className="h-[32px] w-[3px] bg-slate-800 absolute -left-[17px] top-[72px] rounded-l-lg"></div>
-                                        <div className="h-[46px] w-[3px] bg-slate-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
-                                        <div className="h-[46px] w-[3px] bg-slate-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
-                                        <div className="h-[64px] w-[3px] bg-slate-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
-
-                                        {/* Screen Content */}
-                                        <div className="rounded-[2rem] overflow-hidden w-full h-full bg-white flex flex-col relative">
-                                            {/* Status Bar */}
-                                            <div className="h-12 bg-white flex justify-between items-center px-6 pt-2 z-20">
-                                                <div className="text-xs font-semibold text-slate-900">9:41</div>
-                                                <div className="flex gap-1.5">
-                                                    <div className="w-4 h-2.5 bg-slate-900 rounded-sm"></div>
-                                                    <div className="w-0.5 h-2.5 bg-slate-900/30 rounded-sm"></div>
+                                    {/* Phone Frame - Component Refactored */}
+                                    <PhoneMockup className="z-10 shadow-2xl shadow-slate-300">
+                                        {/* App Header */}
+                                        <div className="px-6 pb-4 bg-white z-10">
+                                            <div className="flex justify-between items-center mb-6">
+                                                <div>
+                                                    <div className="text-xs text-slate-400 font-medium mb-0.5">下午好，管理员</div>
+                                                    <div className="text-xl font-bold text-slate-900 tracking-tight">工作台</div>
+                                                </div>
+                                                <div className="w-9 h-9 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center relative">
+                                                    <Bell size={18} className="text-slate-600" />
+                                                    <div className="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></div>
                                                 </div>
                                             </div>
+                                            {/* Search Bar */}
+                                            <div className="w-full h-11 bg-slate-50 rounded-xl flex items-center px-4 gap-2 text-slate-400 text-sm border border-slate-100/50">
+                                                <div className="w-4 h-4 rounded-full border-2 border-slate-300/80"></div>
+                                                <span>搜索功能模块...</span>
+                                            </div>
+                                        </div>
 
-                                            {/* App Header */}
-                                            <div className="px-6 pb-4 bg-white z-10">
-                                                <div className="flex justify-between items-center mb-4">
+                                        {/* Scrollable Content */}
+                                        <div className="flex-1 overflow-hidden bg-[#F8FAFC] rounded-t-[2rem] p-5 space-y-4 relative border-t border-slate-100/50">
+                                            {/* Chart Card */}
+                                            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100/80">
+                                                <div className="flex justify-between items-center mb-6">
                                                     <div>
-                                                        <div className="text-xs text-slate-500">Welcome back</div>
-                                                        <div className="text-xl font-bold text-slate-900">Dashboard</div>
+                                                        <div className="font-bold text-slate-800">本周营收</div>
+                                                        <div className="text-[10px] text-slate-400 mt-0.5">近七天数据</div>
                                                     </div>
-                                                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center">
-                                                        <Bell size={20} className="text-slate-600" />
-                                                    </div>
+                                                    <div className="text-xs text-green-600 font-bold bg-green-50 px-2 py-1 rounded-full">+12.5%</div>
                                                 </div>
-                                                {/* Search Bar */}
-                                                <div className="w-full h-10 bg-slate-50 rounded-xl flex items-center px-3 gap-2 text-slate-400 text-sm">
-                                                    <div className="w-4 h-4 rounded-full border-2 border-slate-300"></div>
-                                                    Search...
-                                                </div>
-                                            </div>
-
-                                            {/* Scrollable Content */}
-                                            <div className="flex-1 overflow-hidden bg-slate-50 rounded-t-3xl p-6 space-y-4 relative">
-                                                {/* Chart Card */}
-                                                <div className="bg-white p-4 rounded-2xl shadow-sm">
-                                                    <div className="flex justify-between items-center mb-4">
-                                                        <div className="font-bold text-slate-800">Revenue</div>
-                                                        <div className="text-xs text-green-500 font-medium">+12.5%</div>
-                                                    </div>
-                                                    <div className="flex items-end gap-2 h-24 px-2">
-                                                        {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
-                                                            <div key={i} style={{ height: `${h}%` }} className="flex-1 bg-[#1677FF] rounded-t-sm opacity-80"></div>
-                                                        ))}
-                                                    </div>
-                                                </div>
-
-                                                {/* List Items */}
-                                                <div className="space-y-3">
-                                                    {[
-                                                        { icon: <CreditCard size={16} />, title: "Payment", time: "2m ago", amount: "+$240" },
-                                                        { icon: <Smartphone size={16} />, title: "Mobile Topup", time: "1h ago", amount: "-$50" },
-                                                        { icon: <Zap size={16} />, title: "Subscription", time: "3h ago", amount: "-$12" },
-                                                    ].map((item, i) => (
-                                                        <div key={i} className="bg-white p-3 rounded-xl shadow-sm flex items-center justify-between">
-                                                            <div className="flex items-center gap-3">
-                                                                <div className="w-8 h-8 rounded-lg bg-blue-50 text-[#1677FF] flex items-center justify-center">
-                                                                    {item.icon}
-                                                                </div>
-                                                                <div>
-                                                                    <div className="text-sm font-bold text-slate-800">{item.title}</div>
-                                                                    <div className="text-xs text-slate-400">{item.time}</div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="text-sm font-semibold text-slate-900">{item.amount}</div>
-                                                        </div>
+                                                <div className="flex items-end gap-2 h-24 px-1">
+                                                    {[40, 65, 45, 80, 55, 90, 70].map((h, i) => (
+                                                        <div key={i} style={{ height: `${h}%` }} className={`flex-1 rounded-t-md ${i === 5 ? 'bg-[#1677FF]' : 'bg-slate-200'} opacity-90 transition-all hover:opacity-100 hover:scale-y-105 origin-bottom`}></div>
                                                     ))}
                                                 </div>
                                             </div>
 
-                                            {/* Bottom Nav */}
-                                            <div className="h-16 bg-white absolute bottom-0 left-0 right-0 flex justify-around items-center border-t border-slate-100 px-2">
-                                                {[0, 1, 2, 3].map((i) => (
-                                                    <div key={i} className={`w-12 h-12 flex items-center justify-center rounded-xl ${i === 0 ? 'text-[#1677FF] bg-blue-50' : 'text-slate-400'}`}>
-                                                        <div className="w-5 h-5 rounded-md border-2 border-current opacity-80"></div>
+                                            {/* List Items */}
+                                            <div className="space-y-3">
+                                                <div className="flex justify-between items-center px-1">
+                                                    <div className="text-sm font-bold text-slate-900">最新动态</div>
+                                                    <div className="text-xs text-[#1677FF] font-medium">查看全部</div>
+                                                </div>
+                                                {[
+                                                    { icon: <CreditCard size={16} />, title: "订单支付", time: "2分钟前", amount: "+¥240.00", color: "bg-blue-50 text-blue-600" },
+                                                    { icon: <Smartphone size={16} />, title: "会员充值", time: "1小时前", amount: "+¥500.00", color: "bg-purple-50 text-purple-600" },
+                                                    { icon: <Zap size={16} />, title: "服务订阅", time: "3小时前", amount: "+¥128.00", color: "bg-amber-50 text-amber-600" },
+                                                ].map((item, i) => (
+                                                    <div key={i} className="bg-white p-3.5 rounded-xl shadow-sm border border-slate-100/50 flex items-center justify-between group hover:border-blue-100 transition-colors">
+                                                        <div className="flex items-center gap-3.5">
+                                                            <div className={`w-10 h-10 rounded-xl ${item.color} flex items-center justify-center`}>
+                                                                {item.icon}
+                                                            </div>
+                                                            <div>
+                                                                <div className="text-sm font-bold text-slate-800 group-hover:text-[#1677FF] transition-colors">{item.title}</div>
+                                                                <div className="text-[10px] text-slate-400 mt-0.5">{item.time}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div className={`text-sm font-bold ${item.amount.startsWith('+') ? 'text-green-600' : 'text-slate-900'}`}>{item.amount}</div>
                                                     </div>
                                                 ))}
                                             </div>
                                         </div>
-                                    </div>
 
-                                    {/* Floating Elements */}
-                                    <div className="absolute top-[10%] -left-[20%] z-20 animate-bounce duration-[3000ms]">
-                                        <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
-                                            <div className="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-500">
-                                                <CheckCircle2 size={20} />
-                                            </div>
-                                            <div>
-                                                <div className="text-xs text-slate-500 font-medium">Status</div>
-                                                <div className="text-sm font-bold text-slate-900">Deployment Success</div>
-                                            </div>
+                                        {/* Bottom Nav */}
+                                        <div className="h-16 bg-white absolute bottom-0 left-0 right-0 flex justify-around items-center border-t border-slate-100 px-4 pb-2 z-20">
+                                            {[0, 1, 2, 3].map((i) => (
+                                                <div key={i} className={`w-12 h-12 flex items-center justify-center rounded-2xl transition-all ${i === 0 ? 'text-[#1677FF] bg-blue-50' : 'text-slate-300 hover:text-slate-500 hover:bg-slate-50'}`}>
+                                                    <div className="w-5 h-5 rounded-md border-[2.5px] border-current opacity-80"></div>
+                                                </div>
+                                            ))}
                                         </div>
-                                    </div>
-
-                                    <div className="absolute bottom-[20%] -right-[10%] z-20 animate-bounce duration-[4000ms]">
-                                        <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-100">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <Fingerprint size={16} className="text-[#1677FF]" />
-                                                <span className="text-xs font-bold text-slate-700">Biometric Auth</span>
-                                            </div>
-                                            <div className="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                                                <div className="w-[85%] h-full bg-[#1677FF] rounded-full"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Tech Icons Orbiting */}
-                                    <div className="absolute top-[50%] -right-[15%] z-0 opacity-80">
-                                        <div className="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center transform rotate-12">
-                                            <Code2 size={24} className="text-blue-500" />
-                                        </div>
-                                    </div>
-                                    <div className="absolute bottom-[15%] -left-[10%] z-0 opacity-80">
-                                        <div className="w-12 h-12 bg-white rounded-xl shadow-lg flex items-center justify-center transform -rotate-6">
-                                            <Smartphone size={24} className="text-purple-500" />
-                                        </div>
-                                    </div>
+                                    </PhoneMockup>
 
                                 </div>
                             </FadeIn>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -233,8 +189,11 @@ export default function AppDev() {
                         </div>
                     </FadeIn>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
+                    <FeatureGrid
+                        cols={3}
+                        variant="badge"
+                        animated
+                        items={[
                             {
                                 title: "用户体验差，留存难",
                                 desc: "模板套用的 App 经常出现卡顿、闪退、界面丑陋，导致用户下载后秒删，推广费用打水漂。",
@@ -250,18 +209,8 @@ export default function AppDev() {
                                 desc: "缺乏专业的安全防护，容易被黑客攻击导致用户数据泄露，给企业带来巨大的法律风险。",
                                 icon: <ShieldCheck size={28} />
                             }
-                        ].map((item, i) => (
-                            <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                                <div className="p-8 rounded-2xl bg-slate-50 hover:bg-white border border-slate-100 hover:border-blue-100 hover:shadow-xl transition-all duration-300 group h-full">
-                                    <div className="w-12 h-12 bg-blue-50 text-[#1677FF] rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform group-hover:bg-[#1677FF] group-hover:text-white duration-300">
-                                        {item.icon}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                                </div>
-                            </FadeIn>
-                        ))}
-                    </div>
+                        ]}
+                    />
                 </div>
             </section>
 
@@ -289,15 +238,15 @@ export default function AppDev() {
                         <div className="lg:w-2/3">
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                                 {[
-                    { name: "React Native", type: "Cross Platform", icon: <Code2 size={28} /> },
-                    { name: "Flutter", type: "Google UI", icon: <Layout size={28} /> },
-                    { name: "Uni-app", type: "Mini Program", icon: <Layers size={28} /> },
-                    { name: "Swift", type: "iOS Native", icon: <Cpu size={28} /> },
-                    { name: "Kotlin", type: "Android", icon: <Smartphone size={28} /> },
-                    { name: "Node.js", type: "Backend", icon: <Server size={28} /> },
-                    { name: "TypeScript", type: "Language", icon: <FileCode size={28} /> },
-                    { name: "Fastify", type: "High Perf", icon: <Zap size={28} /> },
-                  ].map((stack, i) => (
+                                    { name: "React Native", type: "Cross Platform", icon: <Code2 size={28} /> },
+                                    { name: "Flutter", type: "Google UI", icon: <Layout size={28} /> },
+                                    { name: "Uni-app", type: "Mini Program", icon: <Layers size={28} /> },
+                                    { name: "Swift", type: "iOS Native", icon: <Cpu size={28} /> },
+                                    { name: "Kotlin", type: "Android", icon: <Smartphone size={28} /> },
+                                    { name: "Node.js", type: "Backend", icon: <Server size={28} /> },
+                                    { name: "TypeScript", type: "Language", icon: <FileCode size={28} /> },
+                                    { name: "Fastify", type: "High Perf", icon: <Zap size={28} /> },
+                                ].map((stack, i) => (
                                     <FadeIn key={i} delay={i * 0.05} direction="up" className="h-full">
                                         <div className="bg-white border border-slate-200 p-6 rounded-xl hover:border-blue-200 hover:shadow-lg transition-all duration-300 text-center group h-full flex flex-col items-center justify-center relative overflow-hidden">
 
@@ -325,47 +274,28 @@ export default function AppDev() {
                         </div>
                     </FadeIn>
 
-                    <div className="relative">
-                        {/* 连接线 (Desktop) */}
-                        <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
-                            {[
-                                { step: "01", title: "需求分析", desc: "深度沟通，梳理业务逻辑，输出思维导图与原型。", icon: <Layout size={24} /> },
-                                { step: "02", title: "UI/UX设计", desc: "大厂设计师操刀，打造符合品牌调性的视觉界面。", icon: <Smartphone size={24} /> },
-                                { step: "03", title: "程序开发", desc: "规范的代码编写，模块化开发，确保系统稳定扩展。", icon: <Code2 size={24} /> },
-                                { step: "04", title: "测试验收", desc: "功能测试、压力测试、兼容性测试，消灭每一个Bug。", icon: <Bug size={24} /> },
-                                { step: "05", title: "上线运维", desc: "协助应用市场上架，提供全年的免费技术维护。", icon: <Rocket size={24} /> },
-                            ].map((item, i) => (
-                                <FadeIn key={i} delay={i * 0.1} direction="up">
-                                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 relative group hover:-translate-y-2 transition-transform duration-300">
-                                        <div className="w-12 h-12 bg-[#1677FF] text-white rounded-xl flex items-center justify-center text-xl font-bold mb-4 shadow-lg shadow-blue-500/30">
-                                            {item.step}
-                                        </div>
-                                        <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                                        <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                                    </div>
-                                </FadeIn>
-                            ))}
-                        </div>
-                    </div>
+                    <ProcessGrid
+                        items={[
+                            { step: "01", title: "需求分析", desc: "深度沟通，梳理业务逻辑，输出思维导图与原型。" },
+                            { step: "02", title: "UI/UX设计", desc: "大厂设计师操刀，打造符合品牌调性的视觉界面。" },
+                            { step: "03", title: "程序开发", desc: "规范的代码编写，模块化开发，确保系统稳定扩展。" },
+                            { step: "04", title: "测试验收", desc: "功能测试、压力测试、兼容性测试，消灭每一个Bug。" },
+                            { step: "05", title: "上线运维", desc: "协助应用市场上架，提供全年的免费技术维护。" },
+                        ]}
+                        animated
+                        startDelay={0}
+                        delayStep={0.1}
+                    />
                 </div>
             </section>
 
             {/* --- CTA: 底部转化 --- */}
-            <section className="py-24 bg-white relative overflow-hidden">
-                <div className="container mx-auto px-6 text-center">
-                    <FadeIn direction="up">
-                        <h2 className="text-4xl font-bold text-slate-900 mb-6">准备好打造您的超级应用了吗？</h2>
-                        <p className="text-xl text-slate-500 mb-10 max-w-2xl mx-auto">
-                            立即与我们的产品专家沟通，获取免费的需求评估与报价方案。
-                        </p>
-                        <button className="btn bg-[#1677FF] hover:bg-[#0958D9] text-white px-12 py-5 h-auto rounded-full font-bold text-xl shadow-xl shadow-blue-500/30 border-none transition-all hover:scale-105">
-                            免费预约咨询
-                        </button>
-                    </FadeIn>
-                </div>
-            </section>
+            {/* --- CTA: 底部转化 --- */}
+            <CtaSection
+                title="准备好打造您的超级应用了吗？"
+                description="立即与我们的产品专家沟通，获取免费的需求评估与报价方案。"
+                primaryAction={{ label: "免费预约咨询", href: "/contact" }}
+            />
 
         </main>
     );

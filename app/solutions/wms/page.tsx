@@ -1,3 +1,4 @@
+import * as motion from "framer-motion/client";
 import {
   ArrowRight,
   CheckCircle2,
@@ -21,6 +22,8 @@ import {
 
 import FadeIn from '@/components/FadeIn';
 import NumberTicker from '@/components/NumberTicker';
+import CtaSection from '@/components/ui/CtaSection';
+import FeatureGrid from '@/components/ui/FeatureGrid';
 
 export default function WMS() {
   return (
@@ -76,7 +79,11 @@ export default function WMS() {
             </div>
 
             {/* Right: Dashboard Mockup */}
-            <div className="lg:w-1/2 relative">
+            <motion.div
+              className="lg:w-1/2 relative"
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
               <FadeIn delay={0.2} direction="left" duration={0.8}>
                 <div className="relative w-full bg-white rounded-xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100 overflow-hidden">
                   <div className="h-10 border-b border-slate-100 bg-slate-50/80 flex items-center px-4 gap-2">
@@ -96,8 +103,8 @@ export default function WMS() {
                         </div>
                         <div className="grid grid-cols-5 gap-2 mt-6">
                             {Array.from({ length: 15 }).map((_, i) => {
-                                const opacity = Math.random() * 0.8 + 0.2;
-                                const isBusy = Math.random() > 0.7;
+                                const opacity = 0.2 + (((i * 37) % 80) / 100);
+                                const isBusy = i % 7 === 0;
                                 return (
                                     <div key={i} className={`h-8 rounded bg-blue-500 transition-all duration-1000`} style={{ opacity }}>
                                         {isBusy && <div className="w-full h-full animate-pulse bg-red-500/50 rounded"></div>}
@@ -145,7 +152,7 @@ export default function WMS() {
               
                {/* Decorative Background */}
               <div className="absolute -z-10 top-10 -right-10 w-full h-full bg-blue-50 rounded-xl opacity-50 scale-95"></div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -188,34 +195,32 @@ export default function WMS() {
             </div>
           </FadeIn>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "找货难",
-                desc: "商品摆放无规则，老员工凭记忆找货，新员工上手慢，拣货效率极低。",
-                icon: Map
-              },
-              {
-                title: "错发漏发",
-                desc: "肉眼核对容易看走眼，发错货不仅导致退换货成本增加，还影响客户体验。",
-                icon: Package
-              },
-              {
-                title: "库存不准",
-                desc: "出入库登记滞后，账面库存与实物不符，导致销售超卖或积压。",
-                icon: Layers
-              }
-            ].map((item, i) => (
-              <FadeIn key={i} delay={i * 0.1} direction="up" className="h-full">
-                <div className="group bg-[#F8FAFC] hover:bg-white rounded-2xl p-8 border border-slate-100 hover:border-blue-100 shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 h-full">
-                  <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#1677FF] group-hover:scale-110 transition-all mb-6">
-                    <item.icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
+          <div className="mb-16">
+            <FadeIn direction="up">
+              <FeatureGrid
+                items={[
+                  {
+                    title: "找货难",
+                    desc: "商品摆放无规则，老员工凭记忆找货，新员工上手慢，拣货效率极低。",
+                    icon: <Map size={28} />
+                  },
+                  {
+                    title: "错发漏发",
+                    desc: "肉眼核对容易看走眼，发错货不仅导致退换货成本增加，还影响客户体验。",
+                    icon: <Package size={28} />
+                  },
+                  {
+                    title: "库存不准",
+                    desc: "出入库登记滞后，账面库存与实物不符，导致销售超卖或积压。",
+                    icon: <Layers size={28} />
+                  }
+                ]}
+                cols={3}
+                animated
+                variant="badge"
+                size="lg"
+              />
+            </FadeIn>
           </div>
         </div>
       </section>
@@ -459,22 +464,12 @@ export default function WMS() {
                                    
                                    return (
                                        <div key={i} className={`aspect-square rounded-md ${color} relative group cursor-pointer transition-all hover:scale-105 hover:shadow-lg`}>
-                                           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 text-[10px] text-white font-bold transition-opacity">
-                                               {status === 'empty' ? '空' : `${Math.floor(Math.random()*100)}%`}
-                                           </div>
+                                          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 text-[10px] text-white font-bold transition-opacity">
+                                              {status === 'empty' ? '空' : `${(i * 13) % 100}%`}
+                                          </div>
                                        </div>
                                    )
                                })}
-                           </div>
-
-                           {/* Popover Info Mockup */}
-                           <div className="absolute bottom-6 right-6 bg-white p-3 rounded-xl shadow-lg border border-slate-100 w-40">
-                               <div className="text-xs font-bold text-slate-800 mb-1">货位 A-03-04</div>
-                               <div className="text-[10px] text-slate-500 mb-2">商品: 运动跑鞋</div>
-                               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                                   <div className="bg-blue-500 h-full w-[80%]"></div>
-                               </div>
-                               <div className="text-[10px] text-right mt-1 text-blue-600">利用率 80%</div>
                            </div>
                        </div>
                        
@@ -502,32 +497,21 @@ export default function WMS() {
       </section>
 
       {/* --- CTA Section --- */}
-      <section className="py-24 bg-[#1677FF] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('/images/grid.svg')] bg-repeat"></div>
-        </div>
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-        <div className="container mx-auto px-6 relative z-10 text-center">
-          <FadeIn direction="up">
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-              迈向智能仓储
-            </h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-              立即体验 WMS 系统，让仓储管理变得井井有条。
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="btn bg-white text-[#1677FF] hover:bg-blue-50 px-10 py-4 h-auto rounded-xl font-bold text-lg shadow-xl transition-all border-none">
-                免费预约演示
-              </button>
-              <button className="btn bg-transparent border border-white/30 text-white hover:bg-white/10 px-10 py-4 h-auto rounded-xl font-bold text-lg transition-all">
-                咨询在线客服
-              </button>
+      <CtaSection
+        title="迈向智能仓储"
+        description={
+          <>
+            立即体验 WMS 系统，让仓储管理变得井井有条。
+            <br className="hidden md:block" />
+            现在注册，即可获得 15 天全功能免费试用。
+            <div className="mt-8 text-sm text-blue-200/80">
+              支持私有化部署 · 7x24小时服务支持
             </div>
-          </FadeIn>
-        </div>
-      </section>
+          </>
+        }
+        primaryAction={{ label: "免费预约演示", href: "/contact" }}
+        secondaryAction={{ label: "咨询在线客服", href: "/contact" }}
+      />
     </main>
   );
 }
